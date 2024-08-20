@@ -1,0 +1,23 @@
+@mixin border-glass($top:0, $bottom) {
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: radial-gradient(at center, rgba(255, 255, 255, 1.0), rgba(255, 255, 255, 0.0));
+  border-top: $top;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: $bottom;
+}
+
+@mixin max-screen-width {
+  max-width: 500px;
+}
+
+@mixin transitions {
+  transition: all 300ms ease-out;
+
+}
+
+@mixin navigation-styles($display) {
+  display: $display;
+  @apply z-50 bg-pure-white/5 backdrop-blur-2xl p-4 flex w-full items-center justify-between
+}
