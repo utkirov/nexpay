@@ -16,7 +16,7 @@ const checking = function () {
 
 
     <h1>
-      team preparing...
+      team preparing...sad
     </h1>
   </section>
 </template>
