@@ -1,3 +1,11 @@
+<script setup lang="ts">
+useHead({
+  meta: [{
+    name: 'theme-color',
+    content: '#17153B'
+  }]
+})
+</script>
 <template>
 
   <div class="mobile-container">
@@ -14,7 +22,7 @@
 <style scoped>
 
 .mobile-container {
-  @apply mx-auto max-w-[500px] h-screen relative mt-[150px] px-[16px]
+  @apply mx-auto max-w-[500px] relative px-[16px]
 
 }
 

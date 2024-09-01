@@ -44,7 +44,7 @@
           </button>
         </div>
       </nuxt-link>
-      <div v-wave class="link">
+      <nuxt-link to="/profile/recharge" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconHandDeposit :size="24" color="rgba(255,255,255,0.65)"/>
@@ -61,8 +61,8 @@
             <PhosphorIconCaretRight :size="24" color="rgba(255,255,255,0.65)"/>
           </button>
         </div>
-      </div>
-      <div v-wave class="link">
+      </nuxt-link>
+      <nuxt-link to="/profile/withdraw" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconHandWithdraw :size="24" color="rgba(255,255,255,0.65)"/>
@@ -80,7 +80,7 @@
             <PhosphorIconCaretRight :size="24" color="rgba(255,255,255,0.65)"/>
           </button>
         </div>
-      </div>
+      </nuxt-link>
       <div v-wave class="link">
         <div class="link__icon">
           <button>
@@ -137,7 +137,7 @@
           </button>
         </div>
       </nuxt-link>
-      <div v-wave class="link">
+      <nuxt-link to="/profile/faq" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconLifebuoy :size="24" color="rgba(255,255,255,0.65)"/>
@@ -155,7 +155,7 @@
             <PhosphorIconCaretRight :size="24" color="rgba(255,255,255,0.65)"/>
           </button>
         </div>
-      </div>
+      </nuxt-link>
       <div v-wave class="link">
         <div class="link__icon">
           <button>

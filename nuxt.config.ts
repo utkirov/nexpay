@@ -9,13 +9,27 @@ export default defineNuxtConfig({
     },
 
     css: ['~/assets/scss/main.scss'],
-    modules: ['@primevue/nuxt-module', "@nuxtjs/tailwindcss", "nuxt-phosphor-icons", "v-wave/nuxt"],
+    modules: ['@primevue/nuxt-module', '@vee-validate/nuxt', "@nuxtjs/tailwindcss", "nuxt-phosphor-icons", "v-wave/nuxt"],
     primevue: {
         options: {
             theme: {
                 preset: Aura
             }
         }
+    },
+    plugins: [
+        '~/plugins/vue-the-mask.js'
+    ],
+    veeValidate: {
+        // disable or enable auto imports
+        autoImports: true,
+        // Use different names for components
+        componentNames: {
+            Form: 'VeeForm',
+            Field: 'VeeField',
+            FieldArray: 'VeeFieldArray',
+            ErrorMessage: 'VeeErrorMessage',
+        },
     },
     vite: {
         css: {

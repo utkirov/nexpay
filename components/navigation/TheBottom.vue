@@ -1,7 +1,7 @@
 <template>
   <footer>
     <nav class="nav">
-      <nuxt-link to="/" class="nav__item">
+      <nuxt-link exact to="/" class="nav__item">
         <div class="nav__item-icon">
           <PhosphorIconHouseLine :size="32" color="#fff"/>
         </div>
@@ -11,7 +11,7 @@
           </h4>
         </div>
       </nuxt-link>
-      <nuxt-link to="/grab" class="nav__item ">
+      <nuxt-link exact to="/grab" class="nav__item ">
         <div class="nav__item-icon">
           <PhosphorIconRocketLaunch :size="32" color="#fff"/>
         </div>
@@ -21,7 +21,7 @@
           </h4>
         </div>
       </nuxt-link>
-      <nuxt-link to="/grab" class="nav__item ">
+      <nuxt-link exact to="/team" class="nav__item ">
         <div class="nav__item-icon">
           <PhosphorIconUsersThree :size="32" color="#fff"/>
         </div>
@@ -31,7 +31,7 @@
           </h4>
         </div>
       </nuxt-link>
-      <nuxt-link to="/profile" class="nav__item ">
+      <nuxt-link exact to="/profile" class="nav__item ">
         <div class="nav__item-icon">
           <PhosphorIconList :size="32" color="#fff"/>
         </div>
@@ -96,6 +96,16 @@ footer .nav {
 
 .nav .nav__item .nav__item-title h4 {
   @apply text-[12px] font-medium text-pure-white/60 opacity-0 w-full
+}
+
+.router-link-active .nav__item-title h4 {
+  opacity: 1 !important;
+}
+
+.router-link-active .nav__item-icon svg {
+  @apply fill-secondary-color
+
+
 }
 
 

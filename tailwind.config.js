@@ -7,6 +7,7 @@ export default {
             'primary-color': '#17153B',
             'secondary-color': '#ffd14a',
             'pure-white': '#fff',
+            'transparent': 'transparent',
 
         },
         fontFamily: {

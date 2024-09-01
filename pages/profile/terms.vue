@@ -40,6 +40,10 @@ definePageMeta({
 </template>
 
 <style scoped lang="scss">
+.terms {
+  @apply mt-[124px]
+}
+
 .terms h2, .terms p {
   @apply text-pure-white/65
 }
@@ -47,6 +51,7 @@ definePageMeta({
 .terms__title {
   @apply text-lg mb-[20px]
 }
+
 .temrs__body {
   @apply flex flex-col gap-[10px]
 }

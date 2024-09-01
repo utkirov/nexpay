@@ -1,20 +1,22 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-<h1>
-  hello
-</h1>
+
+  <section class="page">
+    <page-components-grab-the-fast-links/>
+    <page-components-grab-the-news/>
+
+
+  </section>
+
 </template>
 
+<style scoped lang="scss">
 
-<script setup lang="ts">
-const title = ref('NexPAY')
-const description = ref('My App Description')
+.page {
+  @apply flex flex-col gap-[30px] px-[1rem]
+}
 
-// This will be reactive when you change title/description above
-useHead({
-  title,
-  meta: [{
-    name: 'description',
-    content: description
-  }]
-})
-</script>
+</style>
