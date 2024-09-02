@@ -3,10 +3,10 @@ import Aura from '@primevue/themes/aura';
 
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
-    app: {
-        pageTransition: {name: 'page', mode: 'out-in'},
-        layoutTransition: {name: 'layout', mode: 'out-in'}
-    },
+    // app: {
+    //     pageTransition: {name: 'page', mode: 'out-in'},
+    //     layoutTransition: {name: 'layout', mode: 'out-in'}
+    // },
 
     css: ['~/assets/scss/main.scss'],
     modules: [

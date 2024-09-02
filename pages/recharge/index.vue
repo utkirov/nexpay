@@ -81,10 +81,24 @@ const {text, copy, copied, isSupported} = useClipboard({source})
 
             </div>
         </div>
+
+        <div class="bottom__bar">
+            <div class="bottom__bar-container">
+                <nuxt-link v-wave to="/recharge">
+                    <PhosphorIconHandWithdraw :size="24" color="#fff"/>
+                    Пополнить
+                </nuxt-link>
+                <nuxt-link v-wave to="/recharge/history">
+                    <PhosphorIconClockCounterClockwise :size="24" color="#fff"/>
+                    История
+                </nuxt-link>
+            </div>
+        </div>
     </section>
 </template>
 
 <style scoped lang="scss">
+
 .recharge {
   @apply flex flex-col gap-[30px] mt-[116px]
 }

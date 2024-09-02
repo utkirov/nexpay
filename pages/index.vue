@@ -17,7 +17,7 @@
 <style scoped lang="scss">
 
 .page {
-  @apply flex flex-col gap-[30px] px-[1rem]
+  @apply flex flex-col gap-[30px] px-[1rem]  pb-[124px]
 }
 
 </style>

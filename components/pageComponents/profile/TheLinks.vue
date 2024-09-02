@@ -52,7 +52,7 @@ const logOut = function () {
                     </button>
                 </div>
             </nuxt-link>
-            <nuxt-link to="/profile/recharge" v-wave class="link">
+            <nuxt-link to="/recharge" v-wave class="link">
                 <div class="link__icon">
                     <button>
                         <PhosphorIconHandDeposit :size="24" color="rgba(255,255,255,0.65)"/>
@@ -70,7 +70,7 @@ const logOut = function () {
                     </button>
                 </div>
             </nuxt-link>
-            <nuxt-link to="/profile/withdraw" v-wave class="link">
+            <nuxt-link to="/withdraw" v-wave class="link">
                 <div class="link__icon">
                     <button>
                         <PhosphorIconHandWithdraw :size="24" color="rgba(255,255,255,0.65)"/>

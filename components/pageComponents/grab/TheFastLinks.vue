@@ -5,80 +5,80 @@
 <template>
 
 
-  <section class="links">
-    <utils-the-container-title title="Быстрые ссылки"/>
-    <div class="links__container inrow2">
-      <nuxt-link v-wave to="/profile/withdraw" class="links-item">
-        <div class="links-item-icon">
-          <PhosphorIconHandWithdraw :size="48" weight="duotone" color="#fff"/>
-        </div>
-        <div class="links-item-title">
-          <h4>
-            Вывести
-          </h4>
+    <section class="links">
+        <utils-the-container-title title="Быстрые ссылки"/>
+        <div class="links__container inrow2">
+            <nuxt-link v-wave to="/withdraw" class="links-item">
+                <div class="links-item-icon">
+                    <PhosphorIconHandWithdraw :size="48" weight="duotone" color="#fff"/>
+                </div>
+                <div class="links-item-title">
+                    <h4>
+                        Вывести
+                    </h4>
+                </div>
+
+            </nuxt-link>
+            <nuxt-link v-wave to="/recharge" class="links-item">
+                <div class="links-item-icon">
+                    <PhosphorIconHandDeposit :size="48" weight="duotone" color="#fff"/>
+                </div>
+                <div class="links-item-title">
+                    <h4>
+                        Пополнить
+                    </h4>
+                </div>
+
+            </nuxt-link>
+            <nuxt-link v-wave to="/stacking" class="links-item">
+                <div class="links-item-icon">
+                    <PhosphorIconVault :size="48" weight="duotone" color="#fff"/>
+                </div>
+                <div class="links-item-title">
+                    <h4>
+                        Стэйкинг
+                    </h4>
+                </div>
+
+            </nuxt-link>
+            <nuxt-link v-wave to="profile/faq" class="links-item">
+                <div class="links-item-icon">
+                    <PhosphorIconQuestion :size="48" weight="duotone" color="#fff"/>
+                </div>
+                <div class="links-item-title">
+                    <h4>
+                        Помощь
+                    </h4>
+                </div>
+
+            </nuxt-link>
+            <nuxt-link v-wave to="#!" class="links-item">
+                <div class="links-item-icon">
+                    <PhosphorIconUsersThree :size="48" weight="duotone" color="#fff"/>
+                </div>
+                <div class="links-item-title">
+                    <h4>
+                        Реферальная система
+                    </h4>
+                </div>
+
+            </nuxt-link>
+
+            <nuxt-link v-wave to="#!" class="links-item">
+                <div class="links-item-icon">
+                    <PhosphorIconTelegramLogo :size="48" weight="duotone" color="#fff"/>
+                </div>
+                <div class="links-item-title">
+                    <h4>
+                        Телеграм
+                    </h4>
+                </div>
+
+            </nuxt-link>
         </div>
 
-      </nuxt-link>
-      <nuxt-link v-wave to="/profile/recharge" class="links-item">
-        <div class="links-item-icon">
-          <PhosphorIconHandDeposit :size="48" weight="duotone" color="#fff"/>
-        </div>
-        <div class="links-item-title">
-          <h4>
-            Пополнить
-          </h4>
-        </div>
 
-      </nuxt-link>
-      <nuxt-link v-wave to="#!" class="links-item">
-        <div class="links-item-icon">
-          <PhosphorIconVault :size="48" weight="duotone" color="#fff"/>
-        </div>
-        <div class="links-item-title">
-          <h4>
-            Стэйкинг
-          </h4>
-        </div>
-
-      </nuxt-link>
-      <nuxt-link v-wave to="profile/faq" class="links-item">
-        <div class="links-item-icon">
-          <PhosphorIconQuestion :size="48" weight="duotone" color="#fff"/>
-        </div>
-        <div class="links-item-title">
-          <h4>
-            Помощь
-          </h4>
-        </div>
-
-      </nuxt-link>
-      <nuxt-link v-wave to="#!" class="links-item">
-        <div class="links-item-icon">
-          <PhosphorIconUsersThree :size="48" weight="duotone" color="#fff"/>
-        </div>
-        <div class="links-item-title">
-          <h4>
-            Реферальная система
-          </h4>
-        </div>
-
-      </nuxt-link>
-
-      <nuxt-link v-wave to="#!" class="links-item">
-        <div class="links-item-icon">
-          <PhosphorIconTelegramLogo :size="48" weight="duotone" color="#fff"/>
-        </div>
-        <div class="links-item-title">
-          <h4>
-            Телеграм
-          </h4>
-        </div>
-
-      </nuxt-link>
-    </div>
-
-
-  </section>
+    </section>
 
 </template>
 

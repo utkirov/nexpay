@@ -224,7 +224,7 @@ const submit = function () {
 }
 
 .form .form__container {
-  @apply flex flex-col gap-[15px] w-full
+  @apply flex flex-col gap-[8px] w-full
 }
 
 .input {
@@ -269,12 +269,12 @@ const submit = function () {
 }
 
 .login__actions {
-  @apply flex justify-between
+  @apply flex gap-[10px]
 }
 
 .login__actions__item {
   @include transitions();
-  @apply p-[10px] w-[145px] h-[145px] flex flex-col gap-[10px] items-center justify-center bg-pure-white/5 rounded-[30px] hover:bg-pure-white/10 hover:cursor-pointer active:bg-pure-white/5
+  @apply p-[10px] py-[15px] w-full flex flex-col gap-[px] items-center justify-center bg-pure-white/5 rounded-[30px] hover:bg-pure-white/10 hover:cursor-pointer active:bg-pure-white/5
 }
 
 .login__actions__item-title h3 {

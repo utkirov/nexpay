@@ -1,95 +1,121 @@
-<script setup lang="ts">
-
-definePageMeta({
-  layout: 'no-bottom-navigation-bar'
-})
-
-const checked = ref(false)
-
-const checking = function () {
-  checked.value = checked.value !== true;
-}
-</script>
-
 <template>
-  <section class="login">
+    <div class="team">
+        <section class="balance grid  grid-cols-2">
+            <navigation-the-top-title title="Team"/>
+            <div class="balance__container">
+                <div class="balance__title">
+                    <h3>
+                        Balance
+                    </h3>
+                </div>
+                <div class="balance__value">
 
+                    <h2>
+                        {{ store.balance }}$
+                    </h2>
+                </div>
+            </div>
 
-    <h1>
-      team preparing...sad
-    </h1>
-  </section>
+            <div class="balance__container">
+                <div class="balance__title">
+                    <h3>
+                        Total amount of Balance Wallet
+                    </h3>
+                </div>
+                <div class="balance__value">
+
+                    <h2>
+                        {{ store.balance }}$
+                    </h2>
+                </div>
+            </div>
+
+            <div class="balance__container">
+                <div class="balance__title">
+                    <h3>
+                        Total revenue
+                    </h3>
+                </div>
+                <div class="balance__value">
+
+                    <h2>
+                        {{ store.balance }}$
+                    </h2>
+                </div>
+            </div>
+
+            <div class="balance__container">
+                <div class="balance__title">
+                    <h3>
+                        Today's receipt
+                    </h3>
+                </div>
+                <div class="balance__value">
+
+                    <h2>
+                        {{ store.balance }}$
+                    </h2>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="team__actions">
+            <nuxt-link v-wave to="/recharge">
+                <PhosphorIconHandDeposit :size="32" color="rgba(255,255,255,0.65)"/>
+                Recharge
+            </nuxt-link>
+
+            <nuxt-link v-wave to="/withdraw">
+                <PhosphorIconHandWithdraw :size="32" color="rgba(255,255,255,0.65)"/>
+                Withdraw
+            </nuxt-link>
+        </div>
+    </div>
 </template>
 
+<script setup>
+import {useMainPage} from "@/stores/mainPage";
+
+const store = useMainPage()
+store.getMainPage()
+</script>
+
 <style scoped lang="scss">
-.login {
-  @apply h-screen flex flex-col justify-between py-[150px]
-
+.team {
+  @apply my-[124px] px-[1rem]
 }
 
-.login h1 {
-  @apply text-3xl font-bold mb-[20px]
+.balance {
+  background: radial-gradient(48% 70.88% at 52% 50%, rgba(151, 71, 255, 0.49) 0%, rgba(67, 1, 158, 0.49) 100%);
 }
 
-.form .form__container {
-  @apply flex flex-col gap-[15px] w-full
+.balance {
+  @apply p-[20px] rounded-3xl gap-y-[30px]
 }
 
-.input {
-  @apply w-full px-[15px] py-[12px] flex bg-pure-white rounded-2xl gap-[10px]
+.balance__title h3 {
+  @apply text-lg text-pure-white/65
 }
 
-.input .input__type {
-  @apply w-full
+.balance__value h2 {
+  @apply font-secondary font-bold text-[24px]
 }
 
-.input .input__type input {
-  @apply w-full bg-transparent text-primary-color
-}
-
-.form__actions {
-  @apply flex justify-between mt-[10px]
-}
-
-.form__actions h3 {
+.balance__action svg {
   @include transitions();
-  @apply text-pure-white/65 hover:text-pure-white
+  @apply fill-pure-white/65 hover:fill-pure-white
 }
 
-.form__submit {
-  @apply mt-[20px] flex flex-col gap-[10px]
+.team__actions {
+  @apply mt-[15px] flex gap-[10px]
 }
 
-.form__submit button {
-  @include transitions();
-  @apply p-[12px] leading-[24px] text-base font-bold w-full text-center bg-secondary-color rounded-2xl text-primary-color hover:bg-secondary-color/90 active:scale-95
-
+.team__actions a {
+  @apply inline-flex w-full px-[10px] py-[12px] bg-pure-white/5 rounded-3xl justify-center gap-[5px] items-center text-pure-white/65
 }
 
-.form__submit button:disabled {
-  @include transitions();
-  @apply bg-pure-white/25 rounded-2xl text-primary-color active:scale-100
-
-}
-
-.form__submit-policy p {
-  @apply text-sm text-pure-white/65 text-center
-}
-
-.login__actions {
-  @apply flex justify-between
-}
-
-.login__actions__item {
-  @include transitions();
-  @apply p-[10px] w-[145px] h-[145px] flex flex-col gap-[10px] items-center justify-center bg-pure-white/5 rounded-[30px] hover:bg-pure-white/10 hover:cursor-pointer active:bg-pure-white/5
-}
-
-.login__actions__item-title h3 {
-  @apply text-center text-sm max-w-[110px] text-pure-white/65
-}
-
-.login__copyright p {
-  @apply text-[14px] font-medium text-pure-white/65 text-center
+.team__actions svg {
+  @apply fill-pure-white/65
 }
 </style>

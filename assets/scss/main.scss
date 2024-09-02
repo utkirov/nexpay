@@ -69,6 +69,24 @@ body {
   transform: translate(50px, 0);
 }
 
+.bottom__bar {
+  @include border-glass(1, 0);
+  @apply px-4 py-8 fixed bottom-0 left-0 bg-primary-color/65 backdrop-blur-lg w-full flex justify-center
+}
+
+.bottom__bar a {
+  @apply flex gap-[5px] text-base p-4 bg-pure-white/5 rounded-3xl text-pure-white font-medium w-full justify-center
+}
+
+.bottom__bar svg {
+  @apply fill-pure-white
+}
+
+.bottom__bar-container {
+  @apply flex gap-[10px] w-full max-w-[500px]
+}
+
+
 // custom prime
 .p-dialog {
   background: rgb(23 21 59 / 0.75) !important;

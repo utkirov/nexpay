@@ -9,6 +9,7 @@ export default {
             'pure-white': '#fff',
             'transparent': 'transparent',
             'danger': '#ff3838',
+            'success': '#04FB84'
 
         },
         fontFamily: {
