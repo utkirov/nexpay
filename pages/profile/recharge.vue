@@ -1,76 +1,87 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: 'no-bottom-navigation-bar'
+    layout: 'no-bottom-navigation-bar'
 })
+import {useRecharge} from "@/stores/recharge";
 
-const input = ref('TVaY4z243iaeMY64zKpK8aW8m9fJMpf8kN')
+const store = useRecharge()
+await store.getRecharge()
+const input = ref('')
+input.value = store.address
+
+import {useClipboard} from '@vueuse/core'
+
+const source = ref('Hello')
+const {text, copy, copied, isSupported} = useClipboard({source})
 </script>
 
 <template>
-  <section class="recharge">
-    <navigation-the-top-title title="Recharge"/>
+    <section class="recharge">
+        <navigation-the-top-title title="Recharge"/>
 
-    <div class="qr">
-      <div class="qr__container">
-        <div class="qr__body">
-          <img src="/qr-code.svg"/>
+        <div class="qr">
+            <div class="qr__container">
+                <div class="qr__body">
+                    <page-components-profile-recharge-qr/>
+                </div>
+                <div class="qr__bottom">
+                    <div class="qr__bottom-title">
+                        <h2>
+                            Mainnet:
+                        </h2>
+                        <h2>
+                            TRC20
+                        </h2>
+                    </div>
+                    <nuxt-link
+                            to="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1200px-QR_icon.svg.png"
+                            download="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1200px-QR_icon.svg.png"
+                            class="qr__bottom-btn">
+                        Save QR code
+                    </nuxt-link>
+                </div>
+            </div>
+
+
         </div>
-        <div class="qr__bottom">
-          <div class="qr__bottom-title">
-            <h2>
-              Mainnet:
-            </h2>
-            <h2>
-              TRC20
-            </h2>
-          </div>
-          <nuxt-link to="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1200px-QR_icon.svg.png"
-              download="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1200px-QR_icon.svg.png"
-              class="qr__bottom-btn">
-            Save QR code
-          </nuxt-link>
+
+        <div class="charge-input">
+            <utils-the-container-title title="Recharge address"/>
+            <div class="charge-input__field">
+                <input type="text" disabled v-model="input">
+                <button @click="copy(input)">
+                    <PhosphorIconCopy :size="24" color="#fff"/>
+                </button>
+            </div>
+
         </div>
-      </div>
 
+        <div class="instructions">
+            <div class="instructions__title">
+                <h3>
+                    <PhosphorIconInfo :size="24" color="#fff"/>
+                    Recharge instructions
+                </h3>
+            </div>
+            <div class="instructions__body">
+                <p>
+                    • The recharge address is USDT-TRC20, please check carefully before recharging
+                </p>
+                <p>
+                    • The minimum deposit amount is 30USDT. Amounts below 30USDT will not be credited
+                </p>
+                <p>
+                    • After the recharge is successful, it will be automatically credited within 3-5 minutes
+                </p>
+                <p>
+                    • Each time you recharge, you need to obtain a new recharge address. Please do not save the address
+                    and
+                    recharge multiple times
+                </p>
 
-    </div>
-
-    <div class="charge-input">
-      <utils-the-container-title title="Recharge address"/>
-      <div class="charge-input__field">
-        <input type="text" disabled v-model="input">
-        <button>
-          <PhosphorIconCopy :size="24" color="#fff"/>
-        </button>
-      </div>
-
-    </div>
-
-    <div class="instructions">
-      <div class="instructions__title">
-        <h3>
-          <PhosphorIconInfo :size="24" color="#fff"/>
-          Recharge instructions
-        </h3>
-      </div>
-      <div class="instructions__body">
-        <p>
-          • The recharge address is USDT-TRC20, please check carefully before recharging
-        </p>
-        <p>
-          • The minimum deposit amount is 30USDT. Amounts below 30USDT will not be credited
-        </p>
-        <p>
-          • After the recharge is successful, it will be automatically credited within 3-5 minutes
-        </p>
-        <p>
-          • Each time you recharge, you need to obtain a new recharge address. Please do not save the address and
-          recharge multiple times
-        </p>
-
-      </div>
-    </div>
-  </section>
+            </div>
+        </div>
+    </section>
 </template>
 
 <style scoped lang="scss">
@@ -83,7 +94,7 @@ const input = ref('TVaY4z243iaeMY64zKpK8aW8m9fJMpf8kN')
 }
 
 .qr__container {
-  @apply flex max-w-[240px] p-[15px] bg-pure-white/5 rounded-[30px] gap-[20px] flex-col
+  @apply flex max-w-[350px] p-[15px] bg-pure-white/5 rounded-[30px] gap-[20px] flex-col
 }
 
 .qr__code {

@@ -9,13 +9,26 @@ export default defineNuxtConfig({
     },
 
     css: ['~/assets/scss/main.scss'],
-    modules: ['@primevue/nuxt-module', "@nuxtjs/tailwindcss", "nuxt-phosphor-icons", "v-wave/nuxt"],
+    modules: [
+        '@primevue/nuxt-module',
+        '@vueuse/nuxt',
+        ['@vee-validate/nuxt', {
+            autoImports: true,
+        }],
+        '@pinia/nuxt',
+        "@nuxtjs/tailwindcss",
+        "nuxt-phosphor-icons",
+        "v-wave/nuxt"],
+    plugins: ['~/plugins/vueMask.js'],
     primevue: {
         options: {
             theme: {
                 preset: Aura
             }
         }
+    },
+    pinia: {
+        storesDirs: ['./stores/**'],
     },
     vite: {
         css: {

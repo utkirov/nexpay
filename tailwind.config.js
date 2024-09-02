@@ -8,6 +8,7 @@ export default {
             'secondary-color': '#ffd14a',
             'pure-white': '#fff',
             'transparent': 'transparent',
+            'danger': '#ff3838',
 
         },
         fontFamily: {

@@ -1,160 +1,219 @@
-<script setup lang="ts">
-
+<!--suppress ALL -->
+<script setup>
 definePageMeta({
-  layout: 'no-bottom-navigation-bar'
+    layout: 'no-bottom-navigation-bar'
 })
+import {useUserAuth} from "@/stores/auth";
+import {defineRule, configure} from 'vee-validate';
+import {required, confirmed, min} from '@vee-validate/rules';
+import {localize} from '@vee-validate/i18n';
+import {useToast} from 'primevue/usetoast';
 
+const toast = useToast();
+
+defineRule('required', required);
+defineRule('confirmed', confirmed);
+defineRule('min', min);
+
+configure({
+    generateMessage: localize('en', {
+        messages: {
+            required: 'This field is required',
+        },
+    }),
+});
+
+const showSuccess = () => {
+    toast.add({severity: 'success', summary: store.responce.message, life: 3000});
+};
+
+const showError = () => {
+    toast.add({severity: 'error', summary: store.responce.message, life: 3000});
+};
+
+const store = useUserAuth();
+const phone = ref('');
+const password = ref('');
+const name = ref('');
+const confirmPassword = ref('');
 const checked = ref(false)
 
+const signUp = function () {
+    store.signUp(name.value, phone.value, password.value);
+}
 const checking = function () {
-  checked.value = checked.value !== true;
+    checked.value = checked.value !== true;
+}
+
+
+// veevalidate
+
+const schema = {
+    phone: 'required',
+    password: 'required|min:5',
+    name: 'required',
+    confirmPassword: 'required|confirmed:@password',
+};
+
+const submit = function () {
+    signUp()
+    if (store.responce.code === 200) {
+        showSuccess()
+    } else {
+        showError()
+    }
+
 }
 </script>
 
 <template>
-  <section class="login">
+    <section class="login">
 
 
-    <form action="#" class="form" @submit.prevent="default">
-      <div class="form__title">
-        <h1>
-          Sign In
-        </h1>
-      </div>
-      <div class="form__container">
-        <div class="input">
-          <div class="input__icon">
-            <PhosphorIconUserCircle :size="24" color="#17153B"/>
-          </div>
-          <div class="input__type">
-            <input type="text" placeholder="Mobile phone or number">
-          </div>
-          <div class="input__last-icon">
-            <PhosphorIconCaretDown :size="24" color="#7B7B7B"/>
-          </div>
-        </div>
-        <div class="input">
-          <div class="input__icon">
-            <PhosphorIconNumpad :size="24" color="#17153B"/>
-          </div>
-          <div class="input__type">
-            <input type="password" placeholder="Verification code">
-          </div>
-          <div class="input__last-icon">
-            <PhosphorIconEye :size="24" color="#7B7B7B"/>
-          </div>
-        </div>
-
-        <div class="input">
-          <div class="input__icon">
-            <PhosphorIconEnvelope :size="24" color="#17153B"/>
-          </div>
-          <div class="input__type">
-            <input type="password" placeholder="Invivation code (required)">
-          </div>
-          <div class="input__last-icon">
-            <PhosphorIconEye :size="24" color="#7B7B7B"/>
-          </div>
-        </div>
-        <div class="input">
-          <div class="input__icon">
-            <PhosphorIconPassword :size="24" color="#17153B"/>
-          </div>
-          <div class="input__type">
-            <input type="password" placeholder="Login password">
-          </div>
-          <div class="input__last-icon">
-            <PhosphorIconEye :size="24" color="#7B7B7B"/>
-          </div>
-        </div>
-        <div class="input">
-          <div class="input__icon">
-            <PhosphorIconPassword :size="24" color="#17153B"/>
-          </div>
-          <div class="input__type">
-            <input type="password" placeholder="Confirm login password again">
-          </div>
-          <div class="input__last-icon">
-            <PhosphorIconEye :size="24" color="#7B7B7B"/>
-          </div>
-        </div>
-        <div class="input">
-          <div class="input__icon">
-            <PhosphorIconKey :size="24" color="#17153B"/>
-          </div>
-          <div class="input__type">
-            <input type="password" placeholder="Fund password">
-          </div>
-          <div class="input__last-icon">
-            <PhosphorIconEye :size="24" color="#7B7B7B"/>
-          </div>
-        </div>
-        <div class="input">
-          <div class="input__icon">
-            <PhosphorIconKey :size="24" color="#17153B"/>
-          </div>
-          <div class="input__type">
-            <input type="password" placeholder="Re-confirm funding password">
-          </div>
-          <div class="input__last-icon">
-            <PhosphorIconEye :size="24" color="#7B7B7B"/>
-          </div>
-        </div>
-
-        <div class="form__submit">
-          <button>
-            Sign In
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <div class="login__actions">
-      <nuxt-link to="/login" class="login__actions__item">
-        <div class="login__actions__item-icon">
-          <PhosphorIconSignIn :size="48" color="#fff"/>
-        </div>
-        <div class="login__actions__item-title">
-          <h3>
-            Already have an account
-          </h3>
-        </div>
-      </nuxt-link>
-
-      <nuxt-link to="#!" class="login__actions__item">
-        <div class="login__actions__item-icon">
-          <PhosphorIconDownloadSimple :size="48" color="#fff"/>
-        </div>
-        <div class="login__actions__item-title">
-          <h3>
-            Download Application
-          </h3>
-        </div>
-      </nuxt-link>
-
-      <nuxt-link to="#!" class="login__actions__item">
-        <div class="login__actions__item-icon">
-          <PhosphorIconHeadset :size="48" color="#fff"/>
-        </div>
-        <div class="login__actions__item-title">
-          <h3>
-            Contact customer service
-          </h3>
-        </div>
-      </nuxt-link>
-    </div>
-
-    <div class="login__copyright">
-      <p>
-        Copyright 2020 Takorp All rights Reserved
-      </p>
-    </div>
+        <Form @submit="submit" :validation-schema="schema" v-slot="{ errors }" class="form">
 
 
-  </section>
+            <div class="form__title">
+                <h1>
+                    Log in
+                </h1>
+            </div>
+
+            <div class="form__container">
+                <div class="input" :class="{'danger': errors.name}">
+                    <div class="input__icon">
+                        <PhosphorIconUserCircle :size="24" color="#17153B"/>
+                    </div>
+                    <div class="input__type">
+                        <Field name="name" v-model="name" placeholder="Your name" type="text"/>
+
+                    </div>
+                    <div class="input__last-icon">
+                        <PhosphorIconCaretDown :size="24" color="#7B7B7B"/>
+                    </div>
+                </div>
+                <div class="input__error">
+                    <ErrorMessage name="name"/>
+                </div>
+                <div class="input" :class="{'danger': errors.phone}">
+                    <div class="input__icon">
+                        <PhosphorIconUserCircle :size="24" color="#17153B"/>
+                    </div>
+                    <div class="input__type">
+                        <Field name="phone" v-model="phone" placeholder="Phone number"
+                               type="text"/>
+
+                    </div>
+                    <div class="input__last-icon">
+                        <PhosphorIconCaretDown :size="24" color="#7B7B7B"/>
+                    </div>
+                </div>
+                <div class="input__error">
+                    <ErrorMessage name="phone"/>
+                </div>
+                <div class="input" :class="{'danger': errors.password}">
+                    <div class="input__icon">
+                        <PhosphorIconUserCircle :size="24" color="#17153B"/>
+                    </div>
+                    <div class="input__type">
+                        <Field name="password" v-model="password" placeholder="Password"
+                               type="password"/>
+                    </div>
+                    <div class="input__last-icon">
+                        <PhosphorIconCaretDown :size="24" color="#7B7B7B"/>
+                    </div>
+                </div>
+                <div class="input__error">
+                    <ErrorMessage name="password"/>
+                </div>
+                <div class="input" :class="{'danger': errors.confirmPassword}">
+                    <div class="input__icon">
+                        <PhosphorIconUserCircle :size="24" color="#17153B"/>
+                    </div>
+                    <div class="input__type">
+                        <Field name="confirmPassword" v-model="confirmPassword" placeholder="Confirm Password"
+                               type="password"/>
+                    </div>
+                    <div class="input__last-icon">
+                        <PhosphorIconCaretDown :size="24" color="#7B7B7B"/>
+                    </div>
+                </div>
+                <div class="input__error">
+                    <ErrorMessage name="confirmPassword"/>
+                </div>
+
+                <div class="form__submit">
+                    <button :disabled="!name||!password||!phone||!confirmPassword">
+                        Sign Up
+                    </button>
+                </div>
+            </div>
+        </Form>
+
+
+        <div class="login__actions">
+            <nuxt-link to="/login" class="login__actions__item">
+                <div class="login__actions__item-icon">
+                    <PhosphorIconSignIn :size="48" color="#fff"/>
+                </div>
+                <div class="login__actions__item-title">
+                    <h3>
+                        Already have an account
+                    </h3>
+                </div>
+            </nuxt-link>
+
+            <nuxt-link to="#!" class="login__actions__item">
+                <div class="login__actions__item-icon">
+                    <PhosphorIconDownloadSimple :size="48" color="#fff"/>
+                </div>
+                <div class="login__actions__item-title">
+                    <h3>
+                        Download Application
+                    </h3>
+                </div>
+            </nuxt-link>
+
+            <nuxt-link to="#!" class="login__actions__item">
+                <div class="login__actions__item-icon">
+                    <PhosphorIconHeadset :size="48" color="#fff"/>
+                </div>
+                <div class="login__actions__item-title">
+                    <h3>
+                        Contact customer service
+                    </h3>
+                </div>
+            </nuxt-link>
+        </div>
+
+        <div class="login__copyright">
+            <p>
+                Copyright 2020 Takorp All rights Reserved
+            </p>
+        </div>
+
+
+    </section>
 </template>
 
 <style scoped lang="scss">
+.input__error {
+  @apply font-bold text-danger
+}
+
+.input.danger {
+  @apply border-2 border-danger text-danger bg-danger/50
+}
+
+.input.danger svg {
+  @apply fill-pure-white
+}
+
+.input.danger input {
+  @apply text-pure-white
+}
+
+////
 .login {
   @apply h-screen flex flex-col justify-between py-[100px] gap-[30px]
 
@@ -195,7 +254,7 @@ const checking = function () {
 
 .form__submit button {
   @include transitions();
-  @apply p-[12px] leading-[24px] text-base font-bold w-full text-center bg-secondary-color rounded-2xl text-primary-color hover:bg-secondary-color/90 active:scale-95
+  @apply p-[12px] leading-[24px] py-4 text-base font-bold w-full text-center bg-secondary-color rounded-2xl text-primary-color hover:bg-secondary-color/90 active:scale-95
 
 }
 

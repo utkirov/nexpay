@@ -5,31 +5,35 @@ const visible = ref(false)
 
 <template>
 
-  <Dialog v-model:visible="visible" modal header="Watch ad" :style="{ width: '100%', 'max-width': '500px'
+    <Dialog
+            pt:root:class="bg-primary-color/65"
+
+
+            v-model:visible="visible" modal header="Watch ad" :style="{ width: '100%', 'max-width': '500px'
   }">
-    <iframe width="100%" height="500" src="https://www.youtube.com/embed/5-UA4AsGC0o?si=Ayb-0dzUULmf034X"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </Dialog>
-  <div class="grabbing">
+        <iframe width="100%" height="500" src="https://www.youtube.com/embed/5-UA4AsGC0o?si=Ayb-0dzUULmf034X"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </Dialog>
+    <div class="grabbing">
 
-    <div class="grabbing__button">
-      <nuxt-link
-          to='#!'
-          class="grabbing__button"
-          @click="visible=true"
-      >
-        <h3>
-          Start
-        </h3>
-        <small>
-          ({{ adCount }}/5)
-        </small>
-      </nuxt-link>
+        <div class="grabbing__button">
+            <nuxt-link
+                    to='#!'
+                    class="grabbing__button"
+                    @click="visible=true"
+            >
+                <h3>
+                    Start
+                </h3>
+                <small>
+                    ({{ adCount }}/5)
+                </small>
+            </nuxt-link>
+        </div>
+
     </div>
-
-  </div>
 </template>
 
 <style scoped lang="scss">

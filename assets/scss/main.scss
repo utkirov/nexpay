@@ -6,6 +6,7 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: light;
@@ -18,6 +19,7 @@
     color-scheme: light;
   }
 }
+
 /* Hide scrollbar for IE, Edge and Firefox */
 * {
   outline: none;
@@ -65,4 +67,11 @@ body {
 .layout-leave-to {
   opacity: 0;
   transform: translate(50px, 0);
+}
+
+// custom prime
+.p-dialog {
+  background: rgb(23 21 59 / 0.75) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15  ) !important;
 }
