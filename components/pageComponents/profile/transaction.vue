@@ -1,29 +1,30 @@
 <template>
-    <div class="transaction plus" v-wave>
-        <h2 class="transaction__title">
-            {{ props.title }}
-        </h2>
-        <div class="transaction__value">
-            <h2>
-                {{ props.price }}
-            </h2>
-            <small>сум</small>
-        </div>
-        <div class="transaction__data">
-            <PhosphorIconBell :size="24" color="#fff"/>
-            {{ props.data }}
-        </div>
+  <div class="transaction" v-wave
+       :class="{'plus': props.transaction.type==='debit', 'minus': props.transaction.type==='credit'}">
+    <h2 class="transaction__title">
+      {{ props.transaction.method }}
+    </h2>
+    <div class="transaction__value">
+      <h2>
+        {{ props.transaction.amount }}
+      </h2>
+      <small>$</small>
     </div>
+    <div class="transaction__data">
+      <PhosphorIconClockCountdown :size="24" color="#fff"/>
+      {{ props.transaction.created_at }}
+    </div>
+  </div>
 </template>
 
 <script setup>
-const props = defineProps(['title', 'price', 'data'])
+const props = defineProps(['transaction'])
 </script>
 
 <style lang="scss" scoped>
 .transaction {
   @include transitions();
-  @apply p-8 bg-pure-white/5 rounded-3xl flex flex-col gap-[10px] hover:bg-pure-white/15
+  @apply p-6 bg-pure-white/5 rounded-3xl flex flex-col gap-[10px] hover:bg-pure-white/15
 }
 
 .transaction.plus .transaction__value h2 {
@@ -39,7 +40,7 @@ const props = defineProps(['title', 'price', 'data'])
 }
 
 .transaction__value {
-  @apply flex items-end
+  @apply flex items-center gap-[5px]
 }
 
 

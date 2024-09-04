@@ -3,6 +3,15 @@ definePageMeta({
   layout: 'no-top-navigation-bar'
 })
 
+import {useProfile} from "~/stores/profile.js";
+
+const store = useProfile()
+
+const profile = computed(() => store.profile)
+
+onMounted(() => {
+  store.getProfileInfo()
+})
 
 </script>
 
@@ -10,7 +19,9 @@ definePageMeta({
 
 
   <div class="profile">
-    <page-components-profile-the-top/>
+    <page-components-profile-the-top
+    :profile="profile"
+    />
     <page-components-profile-the-links/>
   </div>
 

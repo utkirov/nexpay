@@ -2,6 +2,16 @@
 definePageMeta({
   layout: 'no-bottom-navigation-bar'
 })
+
+import {useProfile} from "~/stores/profile.js";
+
+const store = useProfile()
+
+const profile = computed(() => store.profile)
+
+onMounted(() => {
+  store.getProfileInfo()
+})
 </script>
 
 <template>
@@ -23,11 +33,11 @@ definePageMeta({
           </div>
           <div class="info__item-value">
             <h2>
-              998335008200
+              {{ profile.phone }}
             </h2>
-            <button>
-              <PhosphorIconPencil :size="24" color="#fff"/>
-            </button>
+            <!--            <button>-->
+            <!--              <PhosphorIconPencil :size="24" color="#fff"/>-->
+            <!--            </button>-->
           </div>
         </div>
         <div class="info__item">
@@ -39,7 +49,7 @@ definePageMeta({
           </div>
           <div class="info__item-value">
             <h2>
-              1150256
+              {{ profile.user_id }}
             </h2>
           </div>
         </div>
@@ -52,27 +62,11 @@ definePageMeta({
           </div>
           <div class="info__item-value">
             <h2>
-              998335008200
+              {{ profile.phone }}
             </h2>
-            <button>
-              <PhosphorIconPencil :size="24" color="#fff"/>
-            </button>
-          </div>
-        </div>
-        <div class="info__item">
-          <div class="info__item-title">
-            <PhosphorIconAt :size="24" color="#fff"/>
-            <h2>
-              Mail
-            </h2>
-          </div>
-          <div class="info__item-value">
-            <h2>
-              Not bound
-            </h2>
-            <button>
-              <PhosphorIconPencil :size="24" color="#fff"/>
-            </button>
+            <!--            <button>-->
+            <!--              <PhosphorIconPencil :size="24" color="#fff"/>-->
+            <!--            </button>-->
           </div>
         </div>
       </div>

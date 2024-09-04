@@ -1,19 +1,19 @@
-<!--suppress ALL -->
 <script setup>
 definePageMeta({
   layout: 'no-bottom-navigation-bar'
 })
 import {useUserAuth} from "@/stores/auth";
 import {defineRule, configure} from 'vee-validate';
-import {required, email, min} from '@vee-validate/rules';
+import {required, confirmed, min, max} from '@vee-validate/rules';
 import {localize} from '@vee-validate/i18n';
 import {useToast} from 'primevue/usetoast';
 
 const toast = useToast();
 
-
 defineRule('required', required);
+defineRule('confirmed', confirmed);
 defineRule('min', min);
+defineRule('max', max);
 
 configure({
   generateMessage: localize('en', {
@@ -28,7 +28,7 @@ const showSuccess = () => {
 };
 
 const showError = () => {
-  toast.add({severity: 'error', summary: message, life: 3000});
+  toast.add({severity: 'error', summary: store.responce.message, life: 3000});
 };
 
 const store = useUserAuth();
@@ -36,12 +36,19 @@ const code = computed(() => store.code);
 const message = computed(() => store.message);
 const phone = ref('');
 const password = ref('');
+const name = ref('');
+const confirmPassword = ref('');
 const checked = ref(false)
+const refer = ref('');
+const secretCode = ref('');
+const confirmSecretCode = ref('');
 
 const passwordShow = ref('password')
+const secretCodeShow = ref('password')
 
-const logIn = async function () {
-  await store.logIn(phone.value, password.value);
+
+const signingUp = async function () {
+  await store.signUp(name.value, phone.value, password.value, refer.value, secretCode.value);
 }
 const checking = function () {
   checked.value = checked.value !== true;
@@ -50,6 +57,8 @@ const checking = function () {
 const showInputs = function (type) {
   if (type === 'password') {
     passwordShow.value = passwordShow.value === 'password' ? 'text' : 'password';
+  } else if (type === 'secret') {
+    secretCodeShow.value = secretCodeShow.value === 'password' ? 'text' : 'password';
   }
 }
 
@@ -58,11 +67,19 @@ const showInputs = function (type) {
 
 const schema = {
   phone: 'required',
-  password: 'required',
+  password: 'required|min:5',
+  name: 'required',
+  refer: 'required',
+  secretCode: 'required|max:6',
+  confirmSecretCode: 'required|confirmed:@secretCode',
+  confirmPassword: 'required|confirmed:@password',
 };
 
 const submit = async function () {
-  await logIn()
+  await signingUp()
+
+  console.log(code.value)
+  console.log(message.value)
 
   if (code.value === 200) {
     toast.add({
@@ -87,34 +104,46 @@ const submit = async function () {
     });
   }
 
-
 }
 </script>
 
 <template>
   <section class="login">
     <Toast/>
-    {{ store.res }}
+
+
     <Form @submit="submit" :validation-schema="schema" v-slot="{ errors }" class="form">
 
 
       <div class="form__title">
         <h1>
-          Log in
+          Sign Up
         </h1>
       </div>
 
       <div class="form__container">
-        <div class="input" :class="{'danger': errors.phone}">
+        <div class="input" :class="{'danger': errors.name}">
           <div class="input__icon">
             <PhosphorIconUserCircle :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="phone" v-model="phone" placeholder="Mobile phone or number" type="number"/>
+            <Field name="name" v-model="name" placeholder="Your name" type="text"/>
 
           </div>
         </div>
+        <Message severity="error" v-if="errors.name">
+          <ErrorMessage name="name"/>
+        </Message>
+        <div class="input" :class="{'danger': errors.phone}">
+          <div class="input__icon">
+            <PhosphorIconPhone :size="24" color="#17153B"/>
+          </div>
+          <div class="input__type">
+            <Field name="phone" v-model="phone" placeholder="Phone number"
+                   type="text"/>
 
+          </div>
+        </div>
         <Message severity="error" v-if="errors.phone">
           <ErrorMessage name="phone"/>
         </Message>
@@ -123,52 +152,98 @@ const submit = async function () {
             <PhosphorIconPassword :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="password" :type="passwordShow" v-model="password" placeholder="Password"/>
+            <Field name="password" v-model="password" placeholder="Password"
+                   :type="passwordShow"/>
           </div>
           <div class="input__last-icon" @click="showInputs('password')">
             <PhosphorIconEye :size="24" v-if="passwordShow==='password'" color="#7B7B7B"/>
             <PhosphorIconEyeSlash :size="24" v-if="passwordShow==='text'" color="#7B7B7B"/>
           </div>
         </div>
-
         <Message severity="error" v-if="errors.password">
           <ErrorMessage name="password"/>
         </Message>
-        <!--                <div class="form__actions">-->
-        <!--                    <button class="form__actions-remember">-->
-        <!--                        <utils-checkbox id="checkbox" @click="checking()" :checked="checked"/>-->
-        <!--                    </button>-->
-        <!--                    <nuxt-link to="#!">-->
-        <!--                        <h3>-->
-        <!--                            Forgot password?-->
-        <!--                        </h3>-->
-        <!--                    </nuxt-link>-->
-        <!--                </div>-->
+        <div class="input" :class="{'danger': errors.confirmPassword}">
+          <div class="input__icon">
+            <PhosphorIconPassword :size="24" color="#17153B"/>
+          </div>
+          <div class="input__type">
+            <Field name="confirmPassword" v-model="confirmPassword" placeholder="Confirm Password"
+                   :type="passwordShow"/>
+          </div>
+          <div class="input__last-icon" @click="showInputs('password')">
+            <PhosphorIconEye :size="24" v-if="passwordShow==='password'" color="#7B7B7B"/>
+            <PhosphorIconEyeSlash :size="24" v-if="passwordShow==='text'" color="#7B7B7B"/>
+          </div>
+        </div>
+        <Message severity="error" v-if="errors.confirmPassword">
+          <ErrorMessage name="confirmPassword"/>
+        </Message>
+
+        <div class="input" :class="{'danger': errors.refer}">
+          <div class="input__icon">
+            <PhosphorIconLink :size="24" color="#17153B"/>
+          </div>
+          <div class="input__type">
+            <Field name="refer" v-model="refer" placeholder="Referral code"
+                   type="text"/>
+          </div>
+        </div>
+        <Message severity="error" v-if="errors.refer">
+          <ErrorMessage name="refer"/>
+        </Message>
+
+        <div class="input" :class="{'danger': errors.secretCode}">
+          <div class="input__icon">
+            <PhosphorIconLockLaminated :size="24" color="#17153B"/>
+          </div>
+          <div class="input__type">
+            <Field name="secretCode" v-model="secretCode" placeholder="Secret code"
+                   :type="secretCodeShow"/>
+          </div>
+          <div class="input__last-icon" @click="showInputs('secret')">
+            <PhosphorIconEye :size="24" v-if="secretCodeShow==='password'" color="#7B7B7B"/>
+            <PhosphorIconEyeSlash :size="24" v-if="secretCodeShow==='text'" color="#7B7B7B"/>
+          </div>
+        </div>
+        <Message severity="error" v-if="errors.secretCode">
+          <ErrorMessage name="secretCode"/>
+        </Message>
+
+        <div class="input" :class="{'danger': errors.confirmSecretCode}">
+          <div class="input__icon">
+            <PhosphorIconLockLaminated :size="24" color="#17153B"/>
+          </div>
+          <div class="input__type">
+            <Field name="confirmSecretCode" v-model="confirmSecretCode" placeholder="Confirm Secret code"
+                   :type="secretCodeShow"/>
+          </div>
+          <div class="input__last-icon" @click="showInputs('secret')">
+            <PhosphorIconEye :size="24" v-if="secretCodeShow==='password'" color="#7B7B7B"/>
+            <PhosphorIconEyeSlash :size="24" v-if="secretCodeShow==='text'" color="#7B7B7B"/>
+          </div>
+        </div>
+        <Message severity="error" v-if="errors.confirmSecretCode">
+          <ErrorMessage name="confirmSecretCode"/>
+        </Message>
+
         <div class="form__submit">
           <button>
-            Login
+            Sign Up
           </button>
-          <div class="form__submit-policy">
-            <p>
-              2017 | NEXPAY LLC.
-            </p>
-            <p>
-              Terms of Service and Privacy Policy
-            </p>
-          </div>
         </div>
       </div>
     </Form>
 
 
     <div class="login__actions">
-      <nuxt-link to="/signup" class="login__actions__item">
+      <nuxt-link to="/login" class="login__actions__item">
         <div class="login__actions__item-icon">
-          <PhosphorIconUserCirclePlus :size="48" color="#fff"/>
+          <PhosphorIconSignIn :size="48" color="#fff"/>
         </div>
         <div class="login__actions__item-title">
           <h3>
-            Register an account
+            Already have an account
           </h3>
         </div>
       </nuxt-link>
@@ -198,7 +273,7 @@ const submit = async function () {
 
     <div class="login__copyright">
       <p>
-        Copyright 2020 Takorp All rights Reserved
+        2017 | NEXPAY LLC.
       </p>
     </div>
 
@@ -207,14 +282,8 @@ const submit = async function () {
 </template>
 
 <style scoped lang="scss">
-
-// errors
 .input__error {
   @apply font-bold text-danger
-}
-
-.p-message {
-  @apply mb-[10px]
 }
 
 .input.danger {
@@ -229,8 +298,9 @@ const submit = async function () {
   @apply text-pure-white
 }
 
+////
 .login {
-  @apply h-screen flex flex-col justify-between py-[150px]
+  @apply h-screen flex flex-col justify-between py-[100px] gap-[30px]
 
 }
 
@@ -243,8 +313,7 @@ const submit = async function () {
 }
 
 .input {
-  @include transitions();
-  @apply w-full px-[15px] py-[12px] flex bg-pure-white rounded-2xl gap-[10px] border-2 border-transparent
+  @apply w-full px-[15px] py-[12px] flex bg-pure-white rounded-2xl gap-[10px] mb-[5px]
 }
 
 .input .input__type {
@@ -270,7 +339,7 @@ const submit = async function () {
 
 .form__submit button {
   @include transitions();
-  @apply p-[12px] leading-[24px] text-base font-bold w-full text-center bg-secondary-color rounded-2xl text-primary-color hover:bg-secondary-color/90 active:scale-95
+  @apply p-[12px] leading-[24px] py-4 text-base font-bold w-full text-center bg-secondary-color rounded-2xl text-primary-color hover:bg-secondary-color/90 active:scale-95
 
 }
 

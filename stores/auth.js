@@ -3,9 +3,8 @@ import {useCookie} from "nuxt/app";
 export const useUserAuth = defineStore("user", {
     state: () => ({
 
-        responce: {
-            code: '', message: ''
-        }
+        code: '',
+        message: ''
 
     }), actions: {
 
@@ -19,11 +18,12 @@ export const useUserAuth = defineStore("user", {
                 });
 
                 const responseData = await response.json();
+                this.code = responseData.code
+                this.message = responseData.message
                 if (responseData.code === 200) {
                     this.saveToken(responseData.data.token)
                 }
-                this.responce.code = responseData.code
-                this.responce.message = responseData.message
+
 
 
             } catch (err) {
@@ -31,7 +31,7 @@ export const useUserAuth = defineStore("user", {
             }
         },
 
-        async signUp(name, phone, password, secret_key, referrer) {
+        async signUp(name, phone, password, referrer, secret_key) {
 
             try {
                 const response = await fetch(`https://api.nexpay.top/api/v1/auth/register?phone=${phone}&name=${name}&password=${password}&secret_key=${secret_key}&referrer=${referrer}`, {
@@ -44,8 +44,8 @@ export const useUserAuth = defineStore("user", {
                 if (responseData.code === 200) {
                     this.saveToken(responseData.data.token)
                 }
-                this.responce.code = responseData.code
-                this.responce.message = responseData.message
+                this.code = responseData.code
+                this.message = responseData.message
 
 
             } catch (err) {

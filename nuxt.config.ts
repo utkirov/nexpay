@@ -3,13 +3,17 @@ import Aura from '@primevue/themes/aura';
 
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
-    // app: {
-    //     pageTransition: {name: 'page', mode: 'out-in'},
-    //     layoutTransition: {name: 'layout', mode: 'out-in'}
-    // },
+    app: {
+        head: {
+            charset: 'utf-8',
+            viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"',
+        }
+    },
 
     css: ['~/assets/scss/main.scss'],
     modules: [
+        '@nuxtjs/i18n',
+        '@vite-pwa/nuxt',
         '@primevue/nuxt-module',
         '@vueuse/nuxt',
         ['@vee-validate/nuxt', {
@@ -20,6 +24,9 @@ export default defineNuxtConfig({
         "nuxt-phosphor-icons",
         "v-wave/nuxt"],
     plugins: ['~/plugins/vueMask.js'],
+    pwa: {
+        /* PWA options */
+    },
     primevue: {
         options: {
             theme: {
@@ -38,6 +45,22 @@ export default defineNuxtConfig({
                 }
             }
         }
+    }
+    ,
+    i18n: {
+        locales: [
+            {
+                code: 'en',
+                file: 'en.js'
+            },
+            {
+                code: 'ru',
+                file: 'ru.js'
+            },
+        ],
+        lazy: true,
+        langDir: 'lang',
+        defaultLocale: 'en'
     }
 
 })

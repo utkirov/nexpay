@@ -1,87 +1,104 @@
 <template>
-    <div class="level">
-        <div class="level__selected" v-if="props.is_active">
-            <PhosphorIconMagnet :size="24" color="#fff"/>
-            <h3>
-                Ваш уровень
-            </h3>
-        </div>
-
-        <div class="level__header">
-            <div class="level__header-title">
-                <h2>
-                    {{ props.name }}
-                </h2>
-            </div>
-            <div class="level__header-amount">
-                <h2>
-                    {{ props.price }}$
-                </h2>
-            </div>
-        </div>
-
-        <div class="level__body">
-            <div class="level__body-item">
-                <div class="level__body-item__title">
-                    Финансировение дней
-                </div>
-                <div class="level__body-item__value">
-                    {{ props.days }}
-                </div>
-            </div>
-
-            <div class="level__body-item" v-if="props.is_active">
-                <div class="level__body-item__title">
-                    Оставшиеся дни
-                </div>
-                <div class="level__body-item__value">
-                    {{ props.expire_at }}
-                </div>
-            </div>
-
-            <div class="level__body-item">
-                <div class="level__body-item__title">
-                    Ежедневный Доход
-                </div>
-                <div class="level__body-item__value">
-                    {{ props.percent }}%
-                </div>
-            </div>
-
-            <div class="level__body-item">
-                <div class="level__body-item__title">
-                    Возможная прибль
-                </div>
-                <div class="level__body-item__value">
-                    400 $
-                </div>
-            </div>
-        </div>
-
-        <div class="level__footer">
-            <button class="take" v-if="props.is_active">
-                <span class="take__title">
-                       <PhosphorIconMagnet :size="24" color="#fff"/>  Получить
-                </span>
-                <span class="take__value">
-                    {{ props.percent }}$
-                </span>
-            </button>
-
-            <button class="upgrade">
-                <span class="upgrade__title">
-                       <PhosphorIconMagnet :size="24" color="#fff"/>  Получить
-                </span>
-            </button>
-        </div>
+  <div class="level">
+    <div class="level__selected" v-if="props.plan.is_active">
+      <PhosphorIconSealCheck  :size="24" color="#fff"/>
+      <h3>
+        Ваш пакет
+      </h3>
     </div>
+
+    <div class="level__header">
+      <div class="level__header-title">
+        <h2>
+          {{ props.plan.name }}
+        </h2>
+      </div>
+      <div class="level__header-amount">
+        <h2>
+          {{ props.plan.price }}$
+        </h2>
+      </div>
+    </div>
+
+    <div class="level__body">
+      <div class="level__body-item">
+        <div class="level__body-item__title">
+          Финансировение дней
+        </div>
+        <div class="level__body-item__value">
+          {{ props.plan.days }}
+        </div>
+      </div>
+
+      <div class="level__body-item" v-if="props.plan.is_active">
+        <div class="level__body-item__title">
+          Оставшиеся дни
+        </div>
+        <div class="level__body-item__value">
+          {{ props.plan.expire_at }}
+        </div>
+      </div>
+
+      <div class="level__body-item">
+        <div class="level__body-item__title">
+          Ежедневный Доход
+        </div>
+        <div class="level__body-item__value">
+          {{ props.plan.earn }}$
+        </div>
+      </div>
+
+      <div class="level__body-item">
+        <div class="level__body-item__title">
+          Возможная прибль
+        </div>
+        <div class="level__body-item__value">
+          {{ props.plan.total_earn }}
+        </div>
+      </div>
+    </div>
+
+    <div class="level__footer">
+      <button @click="claim(props.plan.id)" class="take" v-if="props.plan.is_active"
+              :disabled="!props.plan.claim_active">
+                <span class="take__title" v-if="props.plan.claim_active">
+                       <PhosphorIconMagnet :size="24" color="#fff"/>  Получить
+                </span>
+        <span class="take__value" v-if="props.plan.claim_active">
+                    {{ props.plan.earn }}$
+                </span>
+        <span class="flex items-center gap-[5px] justify-center w-full" v-if="!props.plan.claim_active">
+          <PhosphorIconInfo :size="24" color="#fff"/>  Сегодня вы уже получили доход
+        </span>
+      </button>
+
+      <button class="upgrade" @click="buyPlan(props.plan.id)" v-if="!props.plan.is_active">
+                <span class="upgrade__title">
+                       <PhosphorIconMagnet :size="24" color="#fff"/>  Улучшить
+                </span>
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps(['is_active', 'name', 'days', 'expire_at', 'price', 'percent'])
+const props = defineProps(['plan'])
+const emit = defineEmits(['showToast', 'claim'])
+
+const buyPlan = function (id: any) {
+  emit('showToast', id)
+}
+
+const claim = function (id: any) {
+  emit('claim', id)
+}
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+.upgrade {
+
+}
+
 .level {
   @apply p-[15px] flex flex-col gap-[20px] bg-pure-white/5 rounded-3xl
 }
@@ -122,9 +139,6 @@ const props = defineProps(['is_active', 'name', 'days', 'expire_at', 'price', 'p
   @apply flex py-[15px] px-[20px] bg-pure-white/5 w-full rounded-3xl
 }
 
-button.take {
-  @apply justify-between
-}
 
 .take__title {
   @apply inline-flex gap-[5px] items-center
@@ -134,8 +148,43 @@ button.take {
   @apply justify-center
 }
 
+button {
+  @include transitions()
+}
+
+button.take:not(button.take:disabled) {
+  @apply justify-between active:scale-95
+}
+
 .upgrade__title {
   @apply flex gap-[5px]
+}
+
+button.take:disabled {
+  @apply bg-pure-white/5
+}
+
+button.take:not(button.take:disabled), button.upgrade:not(button.upgrade:disabled)  {
+  background: radial-gradient(48% 70.88% at 52% 50%, #9747FF 0%, #43019E 100%);
+  box-shadow: 0 0 50px #4503A0;
+  animation-name: button-shadow;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes button-shadow {
+  0% {
+    box-shadow: 0 0 15px #721ee5;
+    transform: scale(1)
+  }
+  50% {
+    box-shadow: 0 0 35px #4503A0;
+    transform: scale(0.95)
+  }
+  100% {
+    box-shadow: 0 0 15px #721ee5;
+    transform: scale(1)
+  }
 }
 
 </style>

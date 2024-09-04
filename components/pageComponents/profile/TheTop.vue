@@ -1,20 +1,36 @@
 <script setup lang="ts">
-import { useToast } from "primevue/usetoast";
+const props = defineProps(['profile'])
+import {useToast} from "primevue/usetoast";
 
 const toast = useToast();
 
 const show = () => {
-  toast.add({ severity: 'info', summary: 'Copy!', detail: 'Copied to clipboard', life: 3000 });
+
 };
+
+
+import { useClipboard, usePermission } from '@vueuse/core'
+
+const input = ref('')
+
+const { text, isSupported, copy } = useClipboard()
+const permissionRead = usePermission('clipboard-read')
+const permissionWrite = usePermission('clipboard-write')
+
+const copyReferral = function (){
+  copy(props.profile.invite_code)
+  toast.add({severity: 'info', summary: 'Copy!', detail: 'Copied to clipboard', life: 3000});
+}
+
 </script>
 
 <template>
-  <Toast />
+  <Toast/>
   <div class="profile-top">
     <div class="profile-top__avatar">
       <img src="/user.png">
       <h1>
-        998336666444
+        {{ props.profile.phone }}
       </h1>
     </div>
 
@@ -27,7 +43,7 @@ const show = () => {
         </div>
         <div class="profile-action-variable">
           <h2>
-            1150256
+            {{ props.profile.user_id }}
           </h2>
         </div>
       </div>
@@ -39,9 +55,9 @@ const show = () => {
         </div>
         <div class="profile-action-variable">
           <h2>
-            34QYL5
+            {{ props.profile.invite_code }}
           </h2>
-          <button @click="show()">
+          <button @click="copyReferral()">
             <PhosphorIconCopy :size="24" color="rgba(255,255,255,0.65)"/>
           </button>
         </div>

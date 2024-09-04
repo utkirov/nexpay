@@ -1,92 +1,168 @@
 <script setup lang="ts">
 definePageMeta({
-    layout: 'no-bottom-navigation-bar'
+  layout: 'no-bottom-navigation-bar'
 })
+import {useToast} from 'primevue/usetoast';
 
-const inputFirst = ref('')
-const inputSecond = ref('')
+const toast = useToast();
+import {defineRule, configure} from 'vee-validate';
+import {required, email, min} from '@vee-validate/rules';
+
+defineRule('required', required);
+defineRule('min', min);
+
+import {useTransaction} from "@/stores/transactions";
+
+const store = useTransaction()
+
+const code = computed(() => store.code)
+const message = computed(() => store.message)
+const amountCalc = computed(() => store.amountCalc)
+
+const schema = {
+  amount: 'required',
+  address: 'required',
+};
+
+
+const amount = ref('')
+const address = ref('')
+
+const withdraw = async function () {
+  await store.withdraw(amount.value, address.value);
+
+}
+
+const submit = async function () {
+  await withdraw()
+
+  if (code.value === 200) {
+    toast.add({
+      severity: 'success',
+      summary: 'Info',
+      detail: message,
+      life: 3000
+    });
+
+  } else if (code.value === 304) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Info',
+      detail: message,
+      life: 3000
+    });
+  } else if (code.value === 301) {
+    toast.add({
+      severity: 'error',
+      summary: 'Info',
+      detail: message,
+      life: 3000
+    });
+  } else if (code.value === 302) {
+    toast.add({
+      severity: 'error',
+      summary: 'Info',
+      detail: message,
+      life: 3000
+    });
+  }
+
+
+}
+const calc = async function () {
+  await store.getCalc()
+  amount.value = amountCalc.value
+}
 </script>
 
 <template>
-    <section class="withdraw">
-        <navigation-the-top-title title="Withdraw"/>
+  <section class="withdraw">
+    <Toast/>
+    <navigation-the-top-title title="Withdraw"/>
 
-        <div class="withdraw__channel" v-wave>
-            <h2>
-                Withdrawal channel
-            </h2>
-            <h2>
-                TRC20
-            </h2>
+
+    <div class="withdraw__channel" v-wave>
+      <h2>
+        Withdrawal channel
+      </h2>
+      <h2>
+        TRC20
+      </h2>
+    </div>
+
+    <page-components-main-balance/>
+
+    <Form @submit="submit" :validation-schema="schema" v-slot="{ errors }" class="withdraw__form">
+      <div class="charge-input" :class="{'danger': errors.amount}">
+        <utils-the-container-title title="Recharge address" second="Amount that can be withdrawn 3 USDT"/>
+        <div class="charge-input__field">
+          <Field name="amount" v-model="amount" placeholder="Please enter the withdrawal amount" type="text"/>
+          <div @click="calc">
+            <PhosphorIconMagnet :size="24" color="#fff"/>
+          </div>
         </div>
+      </div>
+      <Message severity="error" v-if="errors.amount">
+        <ErrorMessage name="amount"/>
+      </Message>
 
-
-        <form action="#!" class="withdraw__form">
-            <div class="charge-input">
-                <utils-the-container-title title="Recharge address" second="Amount that can be withdrawn 3 USDT"/>
-                <div class="charge-input__field">
-                    <input type="text" placeholder="Please enter the withdrawal amount" v-model="inputFirst">
-                    <button>
-                        <PhosphorIconMagnet :size="24" color="#fff"/>
-                    </button>
-                </div>
-            </div>
-
-            <div class="charge-input">
-                <utils-the-container-title title="Payment address"/>
-                <div class="charge-input__field">
-                    <input type="text" placeholder="Please enter the withdrawal address" v-model="inputSecond">
-                </div>
-            </div>
-
-            <div class="withdraw__form-button">
-                <button v-wave :disabled="!inputFirst || !inputSecond">
-                    Confirm withdrawal
-                </button>
-            </div>
-
-
-        </form>
-
-        <div class="bottom__bar">
-            <div class="bottom__bar-container">
-                <nuxt-link v-wave to="/recharge">
-                    <PhosphorIconHandWithdraw :size="24" color="#fff"/>
-                    Пополнить
-                </nuxt-link>
-                <nuxt-link v-wave to="/recharge/history">
-                    <PhosphorIconClockCounterClockwise :size="24" color="#fff"/>
-                    История
-                </nuxt-link>
-            </div>
+      <div class="charge-input" :class="{'danger': errors.address}">
+        <utils-the-container-title title="Payment address"/>
+        <div class="charge-input__field">
+          <Field name="address" v-model="address" placeholder="Please enter the withdrawal address" type="text"/>
         </div>
+      </div>
+      <Message severity="error" v-if="errors.address">
+        <ErrorMessage name="address"/>
+      </Message>
 
-        <div class="instructions">
-            <div class="instructions__title">
-                <h3>
-                    <PhosphorIconInfo :size="24" color="#fff"/>
-                    Recharge instructions
-                </h3>
-            </div>
-            <div class="instructions__body">
-                <p>
-                    • The recharge address is USDT-TRC20, please check carefully before recharging
-                </p>
-                <p>
-                    • The minimum deposit amount is 30USDT. Amounts below 30USDT will not be credited
-                </p>
-                <p>
-                    • After the recharge is successful, it will be automatically credited within 3-5 minutes
-                </p>
-                <p>
-                    • Each time you recharge, you need to obtain a new recharge address. Please do not save the address
-                    and
-                    recharge multiple times
-                </p>
+      <div class="withdraw__form-button">
+        <button v-wave>
+          Confirm withdrawal
+        </button>
+      </div>
+    </Form>
 
-            </div>
-        </div>
-    </section>
+
+    <div class="bottom__bar">
+      <div class="bottom__bar-container">
+        <nuxt-link v-wave to="/recharge">
+          <PhosphorIconHandWithdraw :size="24" color="#fff"/>
+          Пополнить
+        </nuxt-link>
+        <nuxt-link v-wave to="/transactions">
+          <PhosphorIconClockCounterClockwise :size="24" color="#fff"/>
+          История
+        </nuxt-link>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <div class="instructions__title">
+        <h3>
+          <PhosphorIconInfo :size="24" color="#fff"/>
+          Recharge instructions
+        </h3>
+      </div>
+      <div class="instructions__body">
+        <p>
+          • The recharge address is USDT-TRC20, please check carefully before recharging
+        </p>
+        <p>
+          • The minimum deposit amount is 30USDT. Amounts below 30USDT will not be credited
+        </p>
+        <p>
+          • After the recharge is successful, it will be automatically credited within 3-5 minutes
+        </p>
+        <p>
+          • Each time you recharge, you need to obtain a new recharge address. Please do not save the address
+          and
+          recharge multiple times
+        </p>
+
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">

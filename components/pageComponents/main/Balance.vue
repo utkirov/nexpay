@@ -1,33 +1,35 @@
 <template>
-    <section class="balance">
-        <div class="balance__container">
-            <div class="balance__title">
-                <h3>
-                    Balance
-                </h3>
-            </div>
-            <div class="balance__value">
+  <section class="balance">
+    <div class="balance__container">
+      <div class="balance__title">
+        <h3>
+          Balance
+        </h3>
+      </div>
+      <div class="balance__value">
 
-                <h2>
-                    {{ store.balance }}$
-                </h2>
-            </div>
-        </div>
-        <div class="balance__container">
-            <div class="balance__action">
-                <nuxt-link to="/team">
-                    <PhosphorIconDotsThreeCircleVertical :size="32" color="#fff"/>
-                </nuxt-link>
-            </div>
-        </div>
-    </section>
+        <h2>
+          {{ store.balance }}$
+        </h2>
+      </div>
+    </div>
+    <div class="balance__container">
+      <div class="balance__action">
+        <nuxt-link to="/team">
+          <PhosphorIconDotsThreeCircleVertical :size="32" color="#fff"/>
+        </nuxt-link>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
 import {useMainPage} from "@/stores/mainPage";
 
 const store = useMainPage()
-store.getMainPage()
+onMounted(() => {
+  store.getMainPage()
+})
 </script>
 
 <style scoped lang="scss">

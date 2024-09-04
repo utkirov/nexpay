@@ -1,122 +1,24 @@
 <script setup lang="ts">
 const info = ref(false)
 const upgrade = ref(false)
+const props=defineProps(['plans', 'currentPlan'])
+
 
 </script>
 
 <template>
   <div class="membership">
-    <Dialog v-model:visible="info" header="Условия"
-            :style="{ width: '100%', 'max-width': '500px', 'max-height': '80vh', 'overflow-y': 'scroll' }"
-            position="bottom"
-            :draggable="false">
-      <page-components-grab-the-membership-level-information/>
-    </Dialog>
     <Dialog v-model:visible="upgrade" header="Information about levels"
             :style="{ width: '100%', 'max-width': '500px', 'max-height': '80vh', 'overflow-y': 'scroll' }"
             position="bottom"
             :draggable="false">
       <div class="level__container">
-        <div class="level">
-          <div class="level__body">
-            <div class="level__body-title">
-              <h2>
-                VIP I
-              </h2>
-            </div>
-            <div class="level__body-icon">
-              <PhosphorIconSketchLogo :size="94" weight="duotone" color="#ffd14a"/>
-            </div>
-          </div>
+        <page-components-grab-the-membership-level-upgrade
+            v-for="plan in props.plans" :key="plan.id"
+            :plan="plan"
+            :currentPlan="currentPlan"
+        />
 
-
-          <div class="level__actions">
-            <button class="level__actions-item" v-wave @click="info=true">
-              <PhosphorIconInfo :size="24" color="#fff"/>
-              Подробнее
-            </button>
-
-            <button class="level__actions-item" v-wave>
-              <PhosphorIconTrendUp :size="24" color="#fff"/>
-              Улучшить
-            </button>
-          </div>
-        </div>
-        <div class="level">
-          <div class="level__body">
-            <div class="level__body-title">
-              <h2>
-                VIP II
-              </h2>
-            </div>
-            <div class="level__body-icon">
-              <PhosphorIconSketchLogo :size="94" weight="duotone" color="#ffd14a"/>
-            </div>
-          </div>
-
-
-          <div class="level__actions">
-            <button class="level__actions-item" v-wave @click="info=true">
-              <PhosphorIconInfo :size="24" color="#fff"/>
-              Подробнее
-            </button>
-
-            <button class="level__actions-item" v-wave>
-              <PhosphorIconTrendUp :size="24" color="#fff"/>
-              Улучшить
-            </button>
-          </div>
-        </div>
-        <div class="level">
-          <div class="level__body">
-            <div class="level__body-title">
-              <h2>
-                VIP III
-              </h2>
-            </div>
-            <div class="level__body-icon">
-              <PhosphorIconSketchLogo :size="94" weight="duotone" color="#ffd14a"/>
-            </div>
-          </div>
-
-
-          <div class="level__actions">
-            <button class="level__actions-item" v-wave @click="info=true">
-              <PhosphorIconInfo :size="24" color="#fff"/>
-              Подробнее
-            </button>
-
-            <button class="level__actions-item" v-wave>
-              <PhosphorIconTrendUp :size="24" color="#fff"/>
-              Улучшить
-            </button>
-          </div>
-        </div>
-        <div class="level">
-          <div class="level__body">
-            <div class="level__body-title">
-              <h2>
-                VIP IV
-              </h2>
-            </div>
-            <div class="level__body-icon">
-              <PhosphorIconSketchLogo :size="94" weight="duotone" color="#ffd14a"/>
-            </div>
-          </div>
-
-
-          <div class="level__actions">
-            <button class="level__actions-item" v-wave @click="info=true">
-              <PhosphorIconInfo :size="24" color="#fff"/>
-              Подробнее
-            </button>
-
-            <button class="level__actions-item" v-wave>
-              <PhosphorIconTrendUp :size="24" color="#fff"/>
-              Улучшить
-            </button>
-          </div>
-        </div>
       </div>
     </Dialog>
     <utils-the-container-title title="Ваш уровень членство"/>
@@ -124,7 +26,7 @@ const upgrade = ref(false)
       <div class="level__body">
         <div class="level__body-title">
           <h2>
-            VIP IV
+            {{ props.currentPlan.name }}
           </h2>
         </div>
         <div class="level__body-icon">
@@ -132,13 +34,12 @@ const upgrade = ref(false)
         </div>
       </div>
 
+      <page-components-grab-the-membership-level-information
+          :currentPlan="props.currentPlan"
+      />
+
 
       <div class="level__actions">
-        <button class="level__actions-item" v-wave @click="info=true">
-          <PhosphorIconInfo :size="24" color="#fff"/>
-          Подробнее
-        </button>
-
         <button class="level__actions-item" v-wave @click="upgrade=true">
           <PhosphorIconTrendUp :size="24" color="#fff"/>
           Улучшить
@@ -153,7 +54,7 @@ const upgrade = ref(false)
 
 .level {
   @include transitions();
-  @apply py-4 px-8 rounded-3xl bg-pure-white/5 flex flex-col gap-[10px]
+  @apply py-4 px-4 rounded-3xl bg-pure-white/5 flex flex-col gap-[10px]
 }
 
 .level__body {

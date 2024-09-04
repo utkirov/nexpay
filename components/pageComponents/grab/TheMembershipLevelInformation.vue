@@ -1,15 +1,15 @@
 <script setup lang="ts">
-
+const props = defineProps(['currentPlan', 'refer', 'price'])
 </script>
 
 <template>
   <div class="level-information">
     <div class="levels__info">
-      <utils-the-container-title title="Условия обновления VIPIII"/>
+      <utils-the-container-title title="Условия"/>
       <div class="level-information__actions">
         <div v-wave class="level-information__actions__item">
           <div class="level-information__actions__item-icon">
-            <PhosphorIconSignIn :size="48" color="#fff"/>
+            <PhosphorIconMoneyWavy :size="48" color="#fff"/>
           </div>
           <div class="level-information__actions__item-title">
             <h3>
@@ -19,20 +19,23 @@
 
           <div class="level-information__actions__item-value">
             <h3>
-              3
+              {{ props.currentPlan.balance }}
             </h3>
             <h3>
               /
             </h3>
-            <h3>
-              30$
+            <h3 v-if="props.price">
+              {{ props.price }}
+            </h3>
+            <h3 v-if="!props.price">
+              {{ props.currentPlan.price }}
             </h3>
           </div>
         </div>
 
         <div v-wave class="level-information__actions__item">
           <div class="level-information__actions__item-icon">
-            <PhosphorIconSignIn :size="48" color="#fff"/>
+            <PhosphorIconLink :size="48" color="#fff"/>
           </div>
           <div class="level-information__actions__item-title">
             <h3>
@@ -42,64 +45,16 @@
 
           <div class="level-information__actions__item-value">
             <h3>
-              3
+              {{ props.currentPlan.referals }}
             </h3>
             <h3>
               /
             </h3>
-            <h3>
-              30$
+            <h3 v-if="props.refer">
+              {{ props.refer }}
             </h3>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div class="levels__info">
-      <utils-the-container-title title="Условия обновления VIPIII"/>
-      <div class="level-information__actions">
-        <div v-wave class="level-information__actions__item">
-          <div class="level-information__actions__item-icon">
-            <PhosphorIconSignIn :size="48" color="#fff"/>
-          </div>
-          <div class="level-information__actions__item-title">
-            <h3>
-              Баланс
-            </h3>
-          </div>
-
-          <div class="level-information__actions__item-value">
-            <h3>
-              3
-            </h3>
-            <h3>
-              /
-            </h3>
-            <h3>
-              30$
-            </h3>
-          </div>
-        </div>
-
-        <div v-wave class="level-information__actions__item">
-          <div class="level-information__actions__item-icon">
-            <PhosphorIconSignIn :size="48" color="#fff"/>
-          </div>
-          <div class="level-information__actions__item-title">
-            <h3>
-              Приглашения
-            </h3>
-          </div>
-
-          <div class="level-information__actions__item-value">
-            <h3>
-              3
-            </h3>
-            <h3>
-              /
-            </h3>
-            <h3>
-              30$
+            <h3 v-if="!props.refer">
+              {{ props.currentPlan.referrals }}
             </h3>
           </div>
         </div>
@@ -125,7 +80,7 @@
 
 .level-information__actions__item {
   @include transitions();
-  @apply p-[15px] w-full flex flex-col gap-[10px] items-center justify-center bg-pure-white/5 rounded-[30px] hover:bg-pure-white/10 hover:cursor-pointer active:bg-pure-white/5
+  @apply p-2 w-full flex flex-col gap-[10px] items-center justify-center bg-pure-white/5 rounded-[30px] hover:bg-pure-white/10 hover:cursor-pointer active:bg-pure-white/5
 }
 
 .level-information__actions__item-title h3 {

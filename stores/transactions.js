@@ -1,18 +1,22 @@
 import {useCookie} from "nuxt/app";
 
-export const useStacking = defineStore("stacking", {
+export const useTransaction = defineStore("transactions", {
 
     state: () => ({
+        currentPage: '',
+        lastPage: '',
+        list: '',
         code: '',
-        plans: '',
+        message: '',
+        amountCalc: '',
     }),
     actions: {
 
-        async getStacking() {
+        async getTransactions() {
             const token = useCookie('token')
 
             try {
-                const response = await fetch(`https://api.nexpay.top/api/v1/staking/plans`, {
+                const response = await fetch(`https://api.nexpay.top/api/v1/profile/transactions`, {
                     method: "GET", headers: {
                         Authorization: `Bearer ${token.value}`,
                         "Content-Type": "application/json",
@@ -20,69 +24,57 @@ export const useStacking = defineStore("stacking", {
                 });
 
                 const responseData = await response.json();
-                if (responseData.code === 200) {
-
-                    this.plans = responseData.data
-
-                }
+                this.currentPage = responseData.data.currentPage
+                this.lastPage = responseData.data.lastPage
+                this.list = responseData.data.list
 
             } catch (err) {
                 console.error(err);
             }
         },
 
-        async buyPlan(plad_id) {
+        async withdraw(amount, address) {
             const token = useCookie('token')
 
+            const stringAmount = amount.toLowerCase().split(" ").join("")
+
+
             try {
-                const response = await fetch(`https://api.nexpay.top/api/v1/staking/buy?staking_id=${plad_id}`, {
-                    method: "POST",
-                    headers: {
+                const response = await fetch(`https://api.nexpay.top/api/v1/profile/wallet/withdraw?amount=${stringAmount}&wallet=${address}`, {
+                    method: "POST", headers: {
                         Authorization: `Bearer ${token.value}`,
                         "Content-Type": "application/json",
                     },
                 });
 
                 const responseData = await response.json();
-
                 this.code = responseData.code
-                if (this.code === 200) {
-                    this.code = responseData.code
-                    await this.getStacking()
-
-                }
+                this.message = responseData.message
 
             } catch (err) {
                 console.error(err);
             }
-
         },
-        async claim(plad_id) {
+
+        async getCalc() {
             const token = useCookie('token')
 
             try {
-                const response = await fetch(`https://api.nexpay.top/api/v1/staking/claim?staking_id=${plad_id}`, {
-                    method: "POST",
-                    headers: {
+                const response = await fetch(`https://api.nexpay.top/api/v1/profile/wallet/withdraw-calc`, {
+                    method: "GET", headers: {
                         Authorization: `Bearer ${token.value}`,
                         "Content-Type": "application/json",
                     },
                 });
 
                 const responseData = await response.json();
-
-                this.code = responseData.code
-                if (this.code === 200) {
-                    this.code = responseData.code
-                    await this.getStacking()
-
-                }
+                this.amountCalc = responseData.data.amount
 
             } catch (err) {
                 console.error(err);
             }
+        },
 
-        }
     }
 
 })
