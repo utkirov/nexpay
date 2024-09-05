@@ -13,6 +13,12 @@ onMounted(() => {
   store.getProfileInfo()
 })
 
+const title = ref(`NexPAY - Profile`)
+
+useHead({
+  title,
+})
+
 </script>
 
 <template>
@@ -20,7 +26,7 @@ onMounted(() => {
 
   <div class="profile">
     <page-components-profile-the-top
-    :profile="profile"
+        :profile="profile"
     />
     <page-components-profile-the-links/>
   </div>

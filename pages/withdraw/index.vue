@@ -14,10 +14,12 @@ defineRule('min', min);
 import {useTransaction} from "@/stores/transactions";
 
 const store = useTransaction()
+const balanceStore = useMainPage()
 
 const code = computed(() => store.code)
 const message = computed(() => store.message)
 const amountCalc = computed(() => store.amountCalc)
+const balance = computed(() => balanceStore.balance)
 
 const schema = {
   amount: 'required',
@@ -67,6 +69,12 @@ const submit = async function () {
     });
   }
 
+  const title = ref(`NexPAY - Withdraw`)
+
+  useHead({
+    title,
+  })
+
 
 }
 const calc = async function () {
@@ -78,12 +86,12 @@ const calc = async function () {
 <template>
   <section class="withdraw">
     <Toast/>
-    <navigation-the-top-title title="Withdraw"/>
+    <navigation-the-top-title :title="$t('withdraw.title')"/>
 
 
     <div class="withdraw__channel" v-wave>
       <h2>
-        Withdrawal channel
+        {{ $t('withdraw.channel') }}
       </h2>
       <h2>
         TRC20
@@ -94,10 +102,11 @@ const calc = async function () {
 
     <Form @submit="submit" :validation-schema="schema" v-slot="{ errors }" class="withdraw__form">
       <div class="charge-input" :class="{'danger': errors.amount}">
-        <utils-the-container-title title="Recharge address" second="Amount that can be withdrawn 3 USDT"/>
+        <utils-the-container-title :title="$t('withdraw.address')"
+                                   :second="`${$t('withdraw.amount')} ${balance} USDT`"/>
         <div class="charge-input__field">
-          <Field name="amount" v-model="amount" placeholder="Please enter the withdrawal amount" type="text"/>
-          <div @click="calc">
+          <Field name="amount" v-model="amount" :placeholder="$t('withdraw.inputAmount')" type="text"/>
+          <div @click="calc" class="cursor-pointer">
             <PhosphorIconMagnet :size="24" color="#fff"/>
           </div>
         </div>
@@ -107,9 +116,9 @@ const calc = async function () {
       </Message>
 
       <div class="charge-input" :class="{'danger': errors.address}">
-        <utils-the-container-title title="Payment address"/>
+        <utils-the-container-title :title="$t('withdraw.paymentAddress')"/>
         <div class="charge-input__field">
-          <Field name="address" v-model="address" placeholder="Please enter the withdrawal address" type="text"/>
+          <Field name="address" v-model="address" :placeholder="$t('withdraw.addressWith')" type="text"/>
         </div>
       </div>
       <Message severity="error" v-if="errors.address">
@@ -118,7 +127,7 @@ const calc = async function () {
 
       <div class="withdraw__form-button">
         <button v-wave>
-          Confirm withdrawal
+          {{ $t('withdraw.confirm') }}
         </button>
       </div>
     </Form>
@@ -126,13 +135,9 @@ const calc = async function () {
 
     <div class="bottom__bar">
       <div class="bottom__bar-container">
-        <nuxt-link v-wave to="/recharge">
-          <PhosphorIconHandWithdraw :size="24" color="#fff"/>
-          Пополнить
-        </nuxt-link>
         <nuxt-link v-wave to="/transactions">
           <PhosphorIconClockCounterClockwise :size="24" color="#fff"/>
-          История
+          {{ $t('withdraw.transactions') }}
         </nuxt-link>
       </div>
     </div>
@@ -141,7 +146,7 @@ const calc = async function () {
       <div class="instructions__title">
         <h3>
           <PhosphorIconInfo :size="24" color="#fff"/>
-          Recharge instructions
+          {{ $t('withdraw.instructions') }}
         </h3>
       </div>
       <div class="instructions__body">
@@ -167,7 +172,7 @@ const calc = async function () {
 
 <style scoped lang="scss">
 .withdraw {
-  @apply flex flex-col gap-[30px] mt-[116px]
+  @apply flex flex-col gap-[30px] my-[116px]
 }
 
 .withdraw__channel {

@@ -1,6 +1,6 @@
 <template>
   <div class="transactions">
-    <navigation-the-top-title title="Transactions"/>
+    <navigation-the-top-title :title="$t('transactions.title')"/>
 
     <div class="transactions__container">
       <page-components-profile-transaction
@@ -13,7 +13,9 @@
 
 <script setup>
 import {useTransaction} from "~/stores/transactions.js";
-
+definePageMeta({
+  layout: 'no-bottom-navigation-bar'
+})
 const store = useTransaction()
 
 const currentPage = computed(() => store.currentPage)

@@ -7,7 +7,7 @@
         </div>
         <div class="nav__item-title">
           <h4>
-            Домой
+            {{ $t('navigation.home') }}
           </h4>
         </div>
       </nuxt-link>
@@ -17,7 +17,7 @@
         </div>
         <div class="nav__item-title">
           <h4>
-            Заработок
+            {{ $t('navigation.earning') }}
           </h4>
         </div>
       </nuxt-link>
@@ -27,7 +27,7 @@
         </div>
         <div class="nav__item-title">
           <h4>
-            Члены
+            {{ $t('navigation.teams') }}
           </h4>
         </div>
       </nuxt-link>
@@ -37,7 +37,7 @@
         </div>
         <div class="nav__item-title">
           <h4>
-            Меню
+            {{ $t('navigation.menu') }}
           </h4>
         </div>
       </nuxt-link>

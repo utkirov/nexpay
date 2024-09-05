@@ -3,13 +3,19 @@
     <div class="balance__container">
       <div class="balance__title">
         <h3>
-          Balance
+          {{ $t('main.balance.title') }}
         </h3>
       </div>
       <div class="balance__value">
 
         <h2>
-          {{ store.balance }}$
+         <span v-if="showValue">
+            {{ store.balance }}$
+         </span>
+
+          <span v-if="!showValue">
+            *********
+          </span>
         </h2>
       </div>
     </div>
@@ -18,6 +24,10 @@
         <nuxt-link to="/team">
           <PhosphorIconDotsThreeCircleVertical :size="32" color="#fff"/>
         </nuxt-link>
+        <button @click="showValue = !showValue;">
+          <PhosphorIconEye v-if="showValue" :size="32" color="#fff"/>
+          <PhosphorIconEyeSlash v-if="!showValue" :size="32" color="#fff"/>
+        </button>
       </div>
     </div>
   </section>
@@ -25,6 +35,9 @@
 
 <script setup>
 import {useMainPage} from "@/stores/mainPage";
+
+const showValue = ref('false')
+
 
 const store = useMainPage()
 onMounted(() => {

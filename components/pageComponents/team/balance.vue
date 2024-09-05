@@ -8,6 +8,7 @@ const props = defineProps(['balance'])
       <div class="balance__title">
         <h3>
           Balance
+          {{ $t('teams.balance.title') }}
         </h3>
       </div>
       <div class="balance__value">
@@ -21,7 +22,7 @@ const props = defineProps(['balance'])
     <div class="balance__container">
       <div class="balance__title">
         <h3>
-          Total earn from referrals
+          {{ $t('teams.balance.total') }}
         </h3>
       </div>
       <div class="balance__value">
@@ -35,7 +36,7 @@ const props = defineProps(['balance'])
     <div class="balance__container">
       <div class="balance__title">
         <h3>
-          Passed days
+          {{ $t('teams.balance.passed') }}
         </h3>
       </div>
       <div class="balance__value">
@@ -49,7 +50,7 @@ const props = defineProps(['balance'])
     <div class="balance__container">
       <div class="balance__title">
         <h3>
-          Total referrals
+          {{ $t('teams.balance.referrals') }}
         </h3>
       </div>
       <div class="balance__value">

@@ -17,7 +17,7 @@ const newsOn = ref(false)
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </Dialog>
   <section class="news">
-    <utils-the-container-title title="Новости о NEXPAY"/>
+    <utils-the-container-title :title="$t('main.news.title')"/>
 
     <div class="news__container" @click="newsOn=true">
       <PhosphorIconPlayCircle :size="48" weight="duotone" color="#fff"/>

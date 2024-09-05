@@ -1,9 +1,9 @@
 <template>
   <div class="level">
     <div class="level__selected" v-if="props.plan.is_active">
-      <PhosphorIconSealCheck  :size="24" color="#fff"/>
+      <PhosphorIconSealCheck :size="24" color="#fff"/>
       <h3>
-        Ваш пакет
+        {{ $t('stacking.level.yourLevel') }}
       </h3>
     </div>
 
@@ -23,7 +23,7 @@
     <div class="level__body">
       <div class="level__body-item">
         <div class="level__body-item__title">
-          Финансировение дней
+          {{ $t('stacking.level.financing') }}
         </div>
         <div class="level__body-item__value">
           {{ props.plan.days }}
@@ -32,7 +32,7 @@
 
       <div class="level__body-item" v-if="props.plan.is_active">
         <div class="level__body-item__title">
-          Оставшиеся дни
+          {{ $t('stacking.level.remaining') }}
         </div>
         <div class="level__body-item__value">
           {{ props.plan.expire_at }}
@@ -41,7 +41,7 @@
 
       <div class="level__body-item">
         <div class="level__body-item__title">
-          Ежедневный Доход
+          {{ $t('stacking.level.income') }}
         </div>
         <div class="level__body-item__value">
           {{ props.plan.earn }}$
@@ -50,7 +50,7 @@
 
       <div class="level__body-item">
         <div class="level__body-item__title">
-          Возможная прибль
+          {{ $t('stacking.level.potential') }}
         </div>
         <div class="level__body-item__value">
           {{ props.plan.total_earn }}
@@ -62,19 +62,22 @@
       <button @click="claim(props.plan.id)" class="take" v-if="props.plan.is_active"
               :disabled="!props.plan.claim_active">
                 <span class="take__title" v-if="props.plan.claim_active">
-                       <PhosphorIconMagnet :size="24" color="#fff"/>  Получить
+                        <PhosphorIconMagnet :size="24" color="#fff"/>
+                        {{ $t('stacking.level.profit') }}
                 </span>
         <span class="take__value" v-if="props.plan.claim_active">
                     {{ props.plan.earn }}$
                 </span>
         <span class="flex items-center gap-[5px] justify-center w-full" v-if="!props.plan.claim_active">
-          <PhosphorIconInfo :size="24" color="#fff"/>  Сегодня вы уже получили доход
+          <PhosphorIconInfo :size="24" color="#fff"/>
+           {{ $t('stacking.level.alreadyReceived') }}
         </span>
       </button>
 
       <button class="upgrade" @click="buyPlan(props.plan.id)" v-if="!props.plan.is_active">
                 <span class="upgrade__title">
-                       <PhosphorIconMagnet :size="24" color="#fff"/>  Улучшить
+                       <PhosphorIconMagnet :size="24" color="#fff"/>
+                        {{ $t('stacking.level.upgradePlan') }}
                 </span>
       </button>
     </div>
@@ -164,7 +167,7 @@ button.take:disabled {
   @apply bg-pure-white/5
 }
 
-button.take:not(button.take:disabled), button.upgrade:not(button.upgrade:disabled)  {
+button.take:not(button.take:disabled), button.upgrade:not(button.upgrade:disabled) {
   background: radial-gradient(48% 70.88% at 52% 50%, #9747FF 0%, #43019E 100%);
   box-shadow: 0 0 50px #4503A0;
   animation-name: button-shadow;

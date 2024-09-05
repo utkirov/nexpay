@@ -12,7 +12,7 @@ onMounted(() => {
 
 const store = useStacking()
 const toast = useToast();
-
+const {t} = useI18n()
 const plans = computed(() => store.plans)
 const code = computed(() => store.code)
 const loading = computed(() => store.loading)
@@ -28,14 +28,14 @@ const claim = async function (id: any) {
     toast.add({
       severity: 'warn',
       summary: 'Info',
-      detail: 'Не найдено',
+      detail: `${t('stacking.toasts.notFound')}`,
       life: 3000
     });
   } else if (code.value === 303) {
     toast.add({
       severity: 'info',
       summary: 'Info',
-      detail: 'Вы уже кликали',
+      detail: `${t('stacking.toasts.clicked')}`,
       life: 3000
     });
   }
@@ -43,7 +43,7 @@ const claim = async function (id: any) {
     toast.add({
       severity: 'success',
       summary: 'Info',
-      detail: 'Вы получили доход',
+      detail: `${t('stacking.toasts.income')}`,
       life: 3000
     });
   }
@@ -55,14 +55,14 @@ const showToast = async function (id: any) {
     toast.add({
       severity: 'warn',
       summary: 'Info',
-      detail: 'Не достаточна баланса',
+      detail: `${t('stacking.toasts.noBalance')}`,
       life: 3000
     });
   } else if (code.value === 302) {
     toast.add({
       severity: 'info',
       summary: 'Info',
-      detail: 'Уже купил такой стейкинг пакет',
+      detail: `${t('stacking.toasts.bought')}`,
       life: 3000
     });
   }
@@ -70,18 +70,22 @@ else if (code.value === 200) {
     toast.add({
       severity: 'success',
       summary: 'Info',
-      detail: 'Уже купил такой стейкинг пакет',
-      life: 3000
+      detail: `${t('stacking.toasts.completed')}`,
+      life: 3000,
     });
   }
 
 }
+const title = ref(`NexPAY - Stacking`)
 
+useHead({
+  title,
+})
 
 </script>
 
 <template>
-  <navigation-the-top-title title="Stacking"/>
+  <navigation-the-top-title :title="$t('stacking.title')"/>
 
   <section class="stacking">
     <Toast/>

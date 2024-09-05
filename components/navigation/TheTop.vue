@@ -2,12 +2,10 @@
   <header>
     <nav class="navigation ">
       <div class="navigation__actions">
-        <button>
+        <nuxt-link to="https://t.me/NEXPAY_support" target="_blank">
           <PhosphorIconHeadset :size="24" color="#fff"/>
-        </button>
-        <button>
-          <PhosphorIconBell :size="24" color="#fff"/>
-        </button>
+        </nuxt-link>
+
       </div>
 
       <div class="navigation__logo">
@@ -18,7 +16,7 @@
 
       <div class="navigation__avatar">
         <nuxt-link to="/profile">
-          <img src="/user.png">
+          <PhosphorIconUser :size="24" color="#fff"/>
         </nuxt-link>
       </div>
 

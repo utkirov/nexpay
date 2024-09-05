@@ -1,18 +1,18 @@
 <template>
   <div class="team">
-    <navigation-the-top-title title="Team"/>
+    <navigation-the-top-title :title="$t('teams.title')"/>
     <page-components-team-balance
         :balance="balance"
 
     />
     <div class="team__actions">
       <nuxt-link v-wave to="/recharge">
-        <PhosphorIconHandDeposit :size="32" color="rgba(255,255,255,0.65)"/>
+        <PhosphorIconHandWithdraw :size="32" color="rgba(255,255,255,0.65)"/>
         Recharge
       </nuxt-link>
 
       <nuxt-link v-wave to="/withdraw">
-        <PhosphorIconHandWithdraw :size="32" color="rgba(255,255,255,0.65)"/>
+        <PhosphorIconHandDeposit :size="32" color="rgba(255,255,255,0.65)"/>
         Withdraw
       </nuxt-link>
     </div>
@@ -27,26 +27,40 @@
 </template>
 
 <script setup>
+import {useTeam} from "~/stores/team.js";
+import {useProfile} from "~/stores/profile.js";
 import { useShare } from '@vueuse/core'
+
+definePageMeta({
+  layout: 'no-top-navigation-bar'
+})
 
 const { share, isSupported } = useShare()
 
 function startShare() {
   share({
-    title: 'Hello',
-    text: 'Hello my friend!',
+    title: 'Your Referral code ',
+    text: profile.invite_code,
     url: location.href,
   })
 }
-import {useTeam} from "~/stores/team.js";
 
+const storeProfile = useProfile()
 const store = useTeam()
+const balance = computed(() => store.balance)
+const referrals = computed(() => store.referrals)
+const profile = computed(() => storeProfile.profile)
 onMounted(() => {
   store.getBalance()
   store.getReferrals()
+  storeProfile.getProfileInfo()
 })
-const balance = computed(() => store.balance)
-const referrals = computed(() => store.referrals)
+
+const title = ref(`NexPAY - Teams`)
+
+useHead({
+  title,
+})
 </script>
 
 <style scoped lang="scss">

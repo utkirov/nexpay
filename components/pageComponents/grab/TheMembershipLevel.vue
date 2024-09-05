@@ -8,7 +8,7 @@ const props=defineProps(['plans', 'currentPlan'])
 
 <template>
   <div class="membership">
-    <Dialog v-model:visible="upgrade" header="Information about levels"
+    <Dialog v-model:visible="upgrade" :header="$t('grabbing.membership.infoAboutLevels')"
             :style="{ width: '100%', 'max-width': '500px', 'max-height': '80vh', 'overflow-y': 'scroll' }"
             position="bottom"
             :draggable="false">
@@ -21,7 +21,7 @@ const props=defineProps(['plans', 'currentPlan'])
 
       </div>
     </Dialog>
-    <utils-the-container-title title="Ваш уровень членство"/>
+    <utils-the-container-title :title="$t('grabbing.membership.title')"/>
     <div class="level">
       <div class="level__body">
         <div class="level__body-title">
@@ -42,7 +42,7 @@ const props=defineProps(['plans', 'currentPlan'])
       <div class="level__actions">
         <button class="level__actions-item" v-wave @click="upgrade=true">
           <PhosphorIconTrendUp :size="24" color="#fff"/>
-          Улучшить
+          {{ $t('grabbing.membership.upgrade') }}
         </button>
       </div>
     </div>

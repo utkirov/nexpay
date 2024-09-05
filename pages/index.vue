@@ -1,16 +1,19 @@
 <script setup lang="ts">
-
+const title = ref('NexPAY ')
+useHead({
+  title,
+})
 </script>
 
 <template>
 
-    <section class="page">
-        <page-components-main-balance/>
-        <page-components-grab-the-fast-links/>
-        <page-components-grab-the-news/>
+  <section class="page">
+    <page-components-main-balance/>
+    <page-components-grab-the-fast-links/>
+    <page-components-grab-the-news/>
 
 
-    </section>
+  </section>
 
 </template>
 

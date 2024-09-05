@@ -9,21 +9,13 @@ export default defineNuxtConfig({
             viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"',
         }
     },
+    dev: false,
 
     css: ['~/assets/scss/main.scss'],
-    modules: [
-        '@nuxtjs/i18n',
-        '@vite-pwa/nuxt',
-        '@primevue/nuxt-module',
-        '@vueuse/nuxt',
-        ['@vee-validate/nuxt', {
-            autoImports: true,
-        }],
-        '@pinia/nuxt',
-        "@nuxtjs/tailwindcss",
-        "nuxt-phosphor-icons",
-        "v-wave/nuxt"],
-    plugins: ['~/plugins/vueMask.js'],
+    modules: ['@nuxtjs/i18n', '@vite-pwa/nuxt', '@primevue/nuxt-module', '@vueuse/nuxt', ['@vee-validate/nuxt', {
+        autoImports: true,
+    }], '@pinia/nuxt', "@nuxtjs/tailwindcss", "nuxt-phosphor-icons", "v-wave/nuxt", '@nuxt/scripts'],
+    plugins: ['~/plugins/vueMask.js',],
     pwa: {
         /* PWA options */
     },
@@ -57,6 +49,15 @@ export default defineNuxtConfig({
                 code: 'ru',
                 file: 'ru.js'
             },
+            {
+                code: 'uz',
+                file: 'uz.js'
+            },
+            {
+                code: 'tr',
+                file: 'tr.js'
+            },
+
         ],
         lazy: true,
         langDir: 'lang',

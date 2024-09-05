@@ -22,7 +22,7 @@ const logOut = function () {
         </div>
         <div class="link__title">
           <h2>
-            Invitation Letter
+            {{ $t('profile.invitation') }}
 
           </h2>
         </div>
@@ -42,7 +42,7 @@ const logOut = function () {
         </div>
         <div class="link__title">
           <h2>
-            Personal information
+            {{ $t('profile.personal') }}
 
           </h2>
         </div>
@@ -55,12 +55,12 @@ const logOut = function () {
       <nuxt-link to="/recharge" v-wave class="link">
         <div class="link__icon">
           <button>
-            <PhosphorIconHandDeposit :size="24" color="rgba(255,255,255,0.65)"/>
+            <PhosphorIconHandWithdraw :size="24" color="rgba(255,255,255,0.65)"/>
           </button>
         </div>
         <div class="link__title">
           <h2>
-            Recharge
+            {{ $t('profile.recharge') }}
 
           </h2>
         </div>
@@ -73,13 +73,13 @@ const logOut = function () {
       <nuxt-link to="/withdraw" v-wave class="link">
         <div class="link__icon">
           <button>
-            <PhosphorIconHandWithdraw :size="24" color="rgba(255,255,255,0.65)"/>
+            <PhosphorIconHandDeposit :size="24" color="rgba(255,255,255,0.65)"/>
           </button>
         </div>
         <div class="link__title">
           <h2>
 
-            Withdrawal
+            {{ $t('profile.withdraw') }}
 
           </h2>
         </div>
@@ -97,7 +97,7 @@ const logOut = function () {
         </div>
         <div class="link__title">
           <h2>
-            Contact customer service
+            {{ $t('profile.contact') }}
 
           </h2>
         </div>
@@ -109,7 +109,7 @@ const logOut = function () {
       </nuxt-link>
     </div>
     <div class="links-container">
-      <div v-wave class="link">
+      <nuxt-link to="/profile/settings" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconGearSix :size="24" color="rgba(255,255,255,0.65)"/>
@@ -117,25 +117,7 @@ const logOut = function () {
         </div>
         <div class="link__title">
           <h2>
-            Settings
-
-          </h2>
-        </div>
-        <div class="link__last-icon">
-          <button>
-            <PhosphorIconCaretRight :size="24" color="rgba(255,255,255,0.65)"/>
-          </button>
-        </div>
-      </div>
-      <nuxt-link to="/profile/terms" v-wave class="link">
-        <div class="link__icon">
-          <button>
-            <PhosphorIconBookOpenText :size="24" color="rgba(255,255,255,0.65)"/>
-          </button>
-        </div>
-        <div class="link__title">
-          <h2>
-            Terms and Conditions
+            {{ $t('profile.settings') }}
 
           </h2>
         </div>
@@ -145,6 +127,24 @@ const logOut = function () {
           </button>
         </div>
       </nuxt-link>
+<!--      <nuxt-link to="/profile/terms" v-wave class="link">-->
+<!--        <div class="link__icon">-->
+<!--          <button>-->
+<!--            <PhosphorIconBookOpenText :size="24" color="rgba(255,255,255,0.65)"/>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="link__title">-->
+<!--          <h2>-->
+<!--            {{ $t('profile.terms') }}-->
+
+<!--          </h2>-->
+<!--        </div>-->
+<!--        <div class="link__last-icon">-->
+<!--          <button>-->
+<!--            <PhosphorIconCaretRight :size="24" color="rgba(255,255,255,0.65)"/>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </nuxt-link>-->
       <nuxt-link to="/profile/faq" v-wave class="link">
         <div class="link__icon">
           <button>
@@ -154,7 +154,7 @@ const logOut = function () {
         <div class="link__title">
           <h2>
 
-            Help Center
+            {{ $t('profile.help') }}
 
           </h2>
         </div>
@@ -167,12 +167,12 @@ const logOut = function () {
       <div v-wave class="link danger" @click="logOut()">
         <div class="link__icon">
           <button>
-            <PhosphorIconBooks :size="24" color="rgba(255,255,255,0.65)"/>
+            <PhosphorIconSignOut :size="24" color="rgba(255,255,255,0.65)"/>
           </button>
         </div>
         <div class="link__title">
           <h2>
-            Log Out
+            {{ $t('profile.logout') }}
 
           </h2>
         </div>

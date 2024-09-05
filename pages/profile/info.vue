@@ -12,11 +12,17 @@ const profile = computed(() => store.profile)
 onMounted(() => {
   store.getProfileInfo()
 })
+
+const title = ref(`NexPAY - Personal information`)
+
+useHead({
+  title,
+})
 </script>
 
 <template>
   <section class="personal-info">
-    <navigation-the-top-title title="Personal information"/>
+    <navigation-the-top-title :title="$t('profile.info.title')"/>
 
     <div class="personal-info__contaner">
 
@@ -28,7 +34,7 @@ onMounted(() => {
           <div class="info__item-title">
             <PhosphorIconUserCircle :size="24" color="#fff"/>
             <h2>
-              Username
+              {{ $t('profile.info.username') }}
             </h2>
           </div>
           <div class="info__item-value">
@@ -42,7 +48,7 @@ onMounted(() => {
         </div>
         <div class="info__item">
           <div class="info__item-title">
-            <PhosphorIconUserCircle :size="24" color="#fff"/>
+            <PhosphorIconIdentificationBadge :size="24" color="#fff"/>
             <h2>
               ID
             </h2>
@@ -57,16 +63,14 @@ onMounted(() => {
           <div class="info__item-title">
             <PhosphorIconPhone :size="24" color="#fff"/>
             <h2>
-              Mobile phone number
+              {{ $t('profile.info.phone') }}
             </h2>
           </div>
           <div class="info__item-value">
             <h2>
               {{ profile.phone }}
             </h2>
-            <!--            <button>-->
-            <!--              <PhosphorIconPencil :size="24" color="#fff"/>-->
-            <!--            </button>-->
+
           </div>
         </div>
       </div>

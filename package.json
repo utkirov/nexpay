@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/scripts": "^0.8.3",
     "@nuxtjs/i18n": "^8.5.1",
     "@pinia/nuxt": "^0.5.4",
     "@primevue/themes": "^4.0.4",
@@ -17,6 +18,8 @@
     "@vee-validate/nuxt": "^4.13.2",
     "@vee-validate/rules": "^4.13.2",
     "@vite-pwa/nuxt": "^0.10.3",
+    "@vue-youtube/component": "^0.0.6",
+    "@vue-youtube/core": "^0.0.6",
     "@vueuse/integrations": "^11.0.3",
     "@vueuse/sound": "^2.0.1",
     "nuxt": "^3.12.4",
@@ -26,6 +29,7 @@
     "vue": "latest",
     "vue-animated-counter": "^0.3.0",
     "vue-clipboard3": "^2.0.0",
+    "vue-plyr": "^7.0.0",
     "vue-qrcode-component": "^2.1.1",
     "vue-the-mask": "^0.11.1",
     "vue3-autocounter": "^1.0.7",

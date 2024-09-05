@@ -10,15 +10,15 @@ const share = function () {
 <template>
   <section class="invite">
     <utils-the-container-title
-        title="Invitations"
+        :title="$t('teams.invitation.title')"
     />
 
     <div class="invite__button">
       <button v-wave @click="share">
-        Invite now
+        {{ $t('teams.invitation.button') }}
       </button>
       <p>
-        After the invitation is successful, receive the reward immediately
+        {{ $t('teams.invitation.info') }}
 
       </p>
     </div>
@@ -26,10 +26,10 @@ const share = function () {
     <nuxt-link to="/team/referrals" class="success__invitation" v-wave>
       <div class="success__invitation-title">
         <PhosphorIconLink :size="24" color="#fff"/>
-        Successful invitation
+        {{ $t('teams.invitation.successfull') }}
       </div>
       <div class="success__invitation-value">
-        {{ props.total }} people
+        {{ props.total }} {{ $t('teams.invitation.people') }}
         <PhosphorIconCaretRight :size="24" color="#fff"/>
       </div>
 

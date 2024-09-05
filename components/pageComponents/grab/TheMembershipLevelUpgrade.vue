@@ -24,6 +24,7 @@ const props = defineProps(['plan', 'currentPlan'])
     <page-components-grab-the-membership-level-information
         :price="plan.price"
         :refer="plan.referrals"
+        :percent="plan.percent"
         :currentPlan="currentPlan"
     />
 

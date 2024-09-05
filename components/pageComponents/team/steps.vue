@@ -5,7 +5,7 @@
 <template>
 
   <div class="steps">
-    <utils-the-container-title title="Membership Steps"/>
+    <utils-the-container-title :title="$t('teams.steps.title')"/>
     <div class="steps__container">
       <div class="steps__item">
         <div class="steps__item-img">
@@ -13,7 +13,7 @@
         </div>
         <div class="steps__item-title">
           <h2>
-            Send invitation
+            {{ $t('teams.steps.first') }}
           </h2>
         </div>
       </div>
@@ -25,7 +25,7 @@
         </div>
         <div class="steps__item-title">
           <h2>
-            Friend registration and recharge
+            {{ $t('teams.steps.second') }}
           </h2>
         </div>
       </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="steps__item-title">
           <h2>
-            USDT and rating rewards
+            {{ $t('teams.steps.third') }}
           </h2>
         </div>
       </div>
@@ -57,6 +57,7 @@
 .steps__item {
   @apply flex w-[33%] flex-col items-center gap-[10px]
 }
+
 .steps__item h2 {
   @apply text-center
 }

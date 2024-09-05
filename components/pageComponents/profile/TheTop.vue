@@ -4,22 +4,19 @@ import {useToast} from "primevue/usetoast";
 
 const toast = useToast();
 
-const show = () => {
-
-};
-
-
-import { useClipboard, usePermission } from '@vueuse/core'
+const {t} = useI18n()
 
 const input = ref('')
 
-const { text, isSupported, copy } = useClipboard()
-const permissionRead = usePermission('clipboard-read')
-const permissionWrite = usePermission('clipboard-write')
-
-const copyReferral = function (){
+const {text, isSupported, copy} = useClipboard()
+const copyReferral = function () {
   copy(props.profile.invite_code)
-  toast.add({severity: 'info', summary: 'Copy!', detail: 'Copied to clipboard', life: 3000});
+  toast.add({
+    severity: 'info',
+    summary: 'Copy!',
+    detail: `${t('misc.copy')}`,
+    life: 3000
+  });
 }
 
 </script>
@@ -28,7 +25,7 @@ const copyReferral = function (){
   <Toast/>
   <div class="profile-top">
     <div class="profile-top__avatar">
-      <img src="/user.png">
+      <PhosphorIconUserCircle :size="100" color="#fff"/>
       <h1>
         {{ props.profile.phone }}
       </h1>
@@ -38,7 +35,7 @@ const copyReferral = function (){
       <div class="profile-action">
         <div class="profile-action-title">
           <h2>
-            User ID:
+            {{ $t('profile.top.userid') }}
           </h2>
         </div>
         <div class="profile-action-variable">
@@ -50,7 +47,7 @@ const copyReferral = function (){
       <div class="profile-action">
         <div class="profile-action-title">
           <h2>
-            Invitation code:
+            {{ $t('profile.top.invitation') }}
           </h2>
         </div>
         <div class="profile-action-variable">

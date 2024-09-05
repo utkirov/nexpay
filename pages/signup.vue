@@ -117,7 +117,7 @@ const submit = async function () {
 
       <div class="form__title">
         <h1>
-          Sign Up
+          {{ $t('signup.title') }}
         </h1>
       </div>
 
@@ -127,7 +127,7 @@ const submit = async function () {
             <PhosphorIconUserCircle :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="name" v-model="name" placeholder="Your name" type="text"/>
+            <Field name="name" v-model="name" :placeholder="$t('signup.input.name')" type="text"/>
 
           </div>
         </div>
@@ -139,7 +139,7 @@ const submit = async function () {
             <PhosphorIconPhone :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="phone" v-model="phone" placeholder="Phone number"
+            <Field name="phone" v-model="phone" :placeholder="$t('signup.input.phone')"
                    type="text"/>
 
           </div>
@@ -152,7 +152,7 @@ const submit = async function () {
             <PhosphorIconPassword :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="password" v-model="password" placeholder="Password"
+            <Field name="password" v-model="password" :placeholder="$t('signup.input.password')"
                    :type="passwordShow"/>
           </div>
           <div class="input__last-icon" @click="showInputs('password')">
@@ -168,7 +168,7 @@ const submit = async function () {
             <PhosphorIconPassword :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="confirmPassword" v-model="confirmPassword" placeholder="Confirm Password"
+            <Field name="confirmPassword" v-model="confirmPassword" :placeholder="$t('signup.input.confirmPassword')"
                    :type="passwordShow"/>
           </div>
           <div class="input__last-icon" @click="showInputs('password')">
@@ -185,7 +185,7 @@ const submit = async function () {
             <PhosphorIconLink :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="refer" v-model="refer" placeholder="Referral code"
+            <Field name="refer" v-model="refer" :placeholder="$t('signup.input.referral')"
                    type="text"/>
           </div>
         </div>
@@ -198,7 +198,7 @@ const submit = async function () {
             <PhosphorIconLockLaminated :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="secretCode" v-model="secretCode" placeholder="Secret code"
+            <Field name="secretCode" v-model="secretCode" :placeholder="$t('signup.input.secret')"
                    :type="secretCodeShow"/>
           </div>
           <div class="input__last-icon" @click="showInputs('secret')">
@@ -215,7 +215,7 @@ const submit = async function () {
             <PhosphorIconLockLaminated :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="confirmSecretCode" v-model="confirmSecretCode" placeholder="Confirm Secret code"
+            <Field name="confirmSecretCode" v-model="confirmSecretCode" :placeholder="$t('signup.input.secret')"
                    :type="secretCodeShow"/>
           </div>
           <div class="input__last-icon" @click="showInputs('secret')">
@@ -229,7 +229,7 @@ const submit = async function () {
 
         <div class="form__submit">
           <button>
-            Sign Up
+            {{ $t('signup.input.submit') }}
           </button>
         </div>
       </div>
@@ -243,18 +243,18 @@ const submit = async function () {
         </div>
         <div class="login__actions__item-title">
           <h3>
-            Already have an account
+            {{ $t('signup.actions.register') }}
           </h3>
         </div>
       </nuxt-link>
 
-      <nuxt-link to="#!" class="login__actions__item">
+      <nuxt-link to="/download" class="login__actions__item">
         <div class="login__actions__item-icon">
           <PhosphorIconDownloadSimple :size="48" color="#fff"/>
         </div>
         <div class="login__actions__item-title">
           <h3>
-            Download Application
+            {{ $t('signup.actions.download') }}
           </h3>
         </div>
       </nuxt-link>
@@ -265,7 +265,7 @@ const submit = async function () {
         </div>
         <div class="login__actions__item-title">
           <h3>
-            Contact customer service
+            {{ $t('signup.actions.contact') }}
           </h3>
         </div>
       </nuxt-link>
@@ -274,6 +274,9 @@ const submit = async function () {
     <div class="login__copyright">
       <p>
         2017 | NEXPAY LLC.
+      </p>
+      <p>
+        {{ $t('signup.actions.copyright') }}
       </p>
     </div>
 

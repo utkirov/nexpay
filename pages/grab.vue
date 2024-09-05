@@ -16,10 +16,8 @@
 <script setup>
 import {useToast} from "primevue/usetoast";
 
-const title = ref('NexPAY - Grabbing')
-const description = ref('My App Description')
+const title = ref(`NexPAY - Grabbing`)
 
-// This will be reactive when you change title/description above
 useHead({
   title,
 })
@@ -32,7 +30,7 @@ const toast = useToast();
 const plans = computed(() => store.plans)
 const code = computed(() => store.code)
 const currentPlan = computed(() => store.currentPlan)
-
+const {t} = useI18n()
 onMounted(() => {
   store.getCurrentPlan()
   store.getPlans()
@@ -44,21 +42,21 @@ const earning = async function () {
     toast.add({
       severity: 'warn',
       summary: 'Info',
-      detail: 'Не достаточна баланса',
+      detail: `${t('grabbing.toasts.noBalance')}`,
       life: 3000
     });
   } else if (code.value === 303) {
     toast.add({
       severity: 'info',
       summary: 'Info',
-      detail: 'Вы выполнили суточную норму',
+      detail: `${t('grabbing.toasts.requirement')}`,
       life: 3000
     });
   } else if (code.value === 200) {
     toast.add({
       severity: 'success',
       summary: 'Info',
-      detail: 'Успешно выполнено',
+      detail: `${t('grabbing.toasts.completed')}`,
       life: 3000
     });
 

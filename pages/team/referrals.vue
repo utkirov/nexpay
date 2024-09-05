@@ -41,7 +41,9 @@
 
 <script setup>
 import {useTeam} from "~/stores/team.js";
-
+definePageMeta({
+  layout: 'no-navigation'
+})
 const store = useTeam()
 onMounted(() => {
   store.getReferrals()

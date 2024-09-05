@@ -6,26 +6,26 @@
 
 
   <section class="links">
-    <utils-the-container-title title="Быстрые ссылки"/>
+    <utils-the-container-title :title="$t('main.links.title')"/>
     <div class="links__container inrow2">
       <nuxt-link v-wave to="/withdraw" class="links-item">
         <div class="links-item-icon">
-          <PhosphorIconHandWithdraw :size="48" weight="duotone" color="#fff"/>
+          <PhosphorIconHandDeposit :size="48" weight="duotone" color="#fff"/>
         </div>
         <div class="links-item-title">
           <h4>
-            Вывести
+            {{ $t('main.links.withdraw') }}
           </h4>
         </div>
 
       </nuxt-link>
       <nuxt-link v-wave to="/recharge" class="links-item">
         <div class="links-item-icon">
-          <PhosphorIconHandDeposit :size="48" weight="duotone" color="#fff"/>
+          <PhosphorIconHandWithdraw :size="48" weight="duotone" color="#fff"/>
         </div>
         <div class="links-item-title">
           <h4>
-            Пополнить
+            {{ $t('main.links.deposit') }}
           </h4>
         </div>
 
@@ -36,7 +36,7 @@
         </div>
         <div class="links-item-title">
           <h4>
-            Стэйкинг
+            {{ $t('main.links.stacking') }}
           </h4>
         </div>
 
@@ -47,7 +47,7 @@
         </div>
         <div class="links-item-title">
           <h4>
-            Помощь
+            {{ $t('main.links.help') }}
           </h4>
         </div>
 
@@ -58,7 +58,7 @@
         </div>
         <div class="links-item-title">
           <h4>
-            Реферальная система
+            {{ $t('main.links.refer') }}
           </h4>
         </div>
 
@@ -70,10 +70,29 @@
         </div>
         <div class="links-item-title">
           <h4>
-            Телеграм
+            {{ $t('main.links.telegram') }}
           </h4>
         </div>
-
+      </nuxt-link>
+      <nuxt-link v-wave target="_blank" to="https://t.me/NEXPAY_support" class="links-item">
+        <div class="links-item-icon">
+          <PhosphorIconInstagramLogo :size="48" weight="duotone" color="#fff"/>
+        </div>
+        <div class="links-item-title">
+          <h4>
+            {{ $t('main.links.instagram') }}
+          </h4>
+        </div>
+      </nuxt-link>
+      <nuxt-link v-wave target="_blank" to="https://t.me/NEXPAY_support" class="links-item">
+        <div class="links-item-icon">
+          <PhosphorIconYoutubeLogo :size="48" weight="duotone" color="#fff"/>
+        </div>
+        <div class="links-item-title">
+          <h4>
+            {{ $t('main.links.youtube') }}
+          </h4>
+        </div>
       </nuxt-link>
     </div>
 

@@ -1,18 +1,21 @@
 import {useCookie} from "nuxt/app";
 
-export const useMainPage = defineStore("main", {
+export const useGrabbing = defineStore("grab", {
 
     state: () => ({
         balance: '',
-        videoSrc: ''
+        videoSrc: '',
+        videoId: ''
     }),
     actions: {
 
-        async getMainPage() {
+
+        async getVideos() {
+
             const token = useCookie('token')
 
             try {
-                const response = await fetch(`https://api.nexpay.top/api/v1/main`, {
+                const response = await fetch(`https://api.nexpay.top/api/v1/earnings/videos`, {
                     method: "GET", headers: {
                         Authorization: `Bearer ${token.value}`,
                         "Content-Type": "application/json",
@@ -20,18 +23,19 @@ export const useMainPage = defineStore("main", {
                 });
 
                 const responseData = await response.json();
-                if (responseData.code === 200) {
 
-                    console.log(responseData.data.balance)
 
-                    this.balance = responseData.data.balance
-                    this.videoSrc = responseData.data.video
-                    console.log(this.balance.value)
-                }
+                const randomValue =  Math.floor(Math.random() * responseData.data[0].length)
+
+               this.videoId = responseData.data[0][randomValue]
+
+
+
 
             } catch (err) {
                 console.error(err);
             }
+
         }
     }
 

@@ -19,6 +19,12 @@ input.value = address.value
 
 const {text, copy, copied, isSupported} = useClipboard({legacy: true})
 
+const title = ref(`NexPAY - Recharge`)
+
+useHead({
+  title,
+})
+const {t} = useI18n()
 
 const copyFunc = function () {
   copy(input.value)
@@ -26,7 +32,7 @@ const copyFunc = function () {
     toast.add({
       severity: 'info',
       summary: 'Successfull',
-      detail: 'You are successfully copied the address',
+      detail: t('misc.toasts.copy'),
       life: 3000
     });
   }
@@ -36,7 +42,7 @@ const copyFunc = function () {
 <template>
   <Toast/>
   <section class="recharge">
-    <navigation-the-top-title title="Recharge"/>
+    <navigation-the-top-title :title="$t('recharge.title')"/>
 
     <div class="qr">
       <div class="qr__container">
@@ -73,7 +79,7 @@ const copyFunc = function () {
       <div class="instructions__title">
         <h3>
           <PhosphorIconInfo :size="24" color="#fff"/>
-          Recharge instructions
+          {{ $t('recharge.instructions') }}
         </h3>
       </div>
       <div class="instructions__body">
@@ -97,13 +103,9 @@ const copyFunc = function () {
 
     <div class="bottom__bar">
       <div class="bottom__bar-container">
-        <nuxt-link v-wave to="/recharge">
-          <PhosphorIconHandWithdraw :size="24" color="#fff"/>
-          Пополнить
-        </nuxt-link>
         <nuxt-link v-wave to="/transactions">
           <PhosphorIconClockCounterClockwise :size="24" color="#fff"/>
-          История
+          {{ $t('recharge.transactions') }}
         </nuxt-link>
       </div>
     </div>
@@ -113,7 +115,7 @@ const copyFunc = function () {
 <style scoped lang="scss">
 
 .recharge {
-  @apply flex flex-col gap-[30px] mt-[116px]
+  @apply flex flex-col gap-[30px] my-[116px]
 }
 
 .qr {

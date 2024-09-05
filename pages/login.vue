@@ -89,18 +89,22 @@ const submit = async function () {
 
 
 }
+
+const title = ref('NexPAY - Log In')
+useHead({
+  title,
+})
 </script>
 
 <template>
   <section class="login">
     <Toast/>
-    {{ store.res }}
     <Form @submit="submit" :validation-schema="schema" v-slot="{ errors }" class="form">
 
 
       <div class="form__title">
         <h1>
-          Log in
+          {{ $t('login.title') }}
         </h1>
       </div>
 
@@ -110,8 +114,7 @@ const submit = async function () {
             <PhosphorIconUserCircle :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="phone" v-model="phone" placeholder="Mobile phone or number" type="number"/>
-
+            <Field name="phone" v-model="phone" :placeholder="$t('login.input.phone')" type="number"/>
           </div>
         </div>
 
@@ -123,7 +126,7 @@ const submit = async function () {
             <PhosphorIconPassword :size="24" color="#17153B"/>
           </div>
           <div class="input__type">
-            <Field name="password" :type="passwordShow" v-model="password" placeholder="Password"/>
+            <Field name="password" :type="passwordShow" v-model="password" :placeholder="$t('login.input.password')"/>
           </div>
           <div class="input__last-icon" @click="showInputs('password')">
             <PhosphorIconEye :size="24" v-if="passwordShow==='password'" color="#7B7B7B"/>
@@ -146,14 +149,14 @@ const submit = async function () {
         <!--                </div>-->
         <div class="form__submit">
           <button>
-            Login
+            {{ $t('login.input.submit') }}
           </button>
           <div class="form__submit-policy">
             <p>
               2017 | NEXPAY LLC.
             </p>
             <p>
-              Terms of Service and Privacy Policy
+              {{ $t('login.terms') }}
             </p>
           </div>
         </div>
@@ -168,18 +171,18 @@ const submit = async function () {
         </div>
         <div class="login__actions__item-title">
           <h3>
-            Register an account
+            {{ $t('login.actions.register') }}
           </h3>
         </div>
       </nuxt-link>
 
-      <nuxt-link to="#!" class="login__actions__item">
+      <nuxt-link to="/download" class="login__actions__item">
         <div class="login__actions__item-icon">
           <PhosphorIconDownloadSimple :size="48" color="#fff"/>
         </div>
         <div class="login__actions__item-title">
           <h3>
-            Download Application
+            {{ $t('login.actions.download') }}
           </h3>
         </div>
       </nuxt-link>
@@ -190,7 +193,7 @@ const submit = async function () {
         </div>
         <div class="login__actions__item-title">
           <h3>
-            Contact customer service
+            {{ $t('login.actions.contact') }}
           </h3>
         </div>
       </nuxt-link>
@@ -198,7 +201,7 @@ const submit = async function () {
 
     <div class="login__copyright">
       <p>
-        Copyright 2020 Takorp All rights Reserved
+        {{ $t('login.actions.copyright') }}
       </p>
     </div>
 
