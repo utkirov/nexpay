@@ -6,8 +6,8 @@ const props = defineProps(['currentPlan', 'refer', 'price', 'percent'])
   <div class="level-information">
     <div class="levels__info">
       <utils-the-container-title :title="$t('grabbing.membership.upgrading.title')"/>
-      <div class="level-information__actions">
-        <div v-wave class="level-information__actions__item">
+
+      <div v-wave class="level-information__actions__item mb-4">
           <div class="level-information__actions__item-icon">
             <PhosphorIconMoneyWavy :size="36" color="#fff"/>
           </div>
@@ -32,6 +32,8 @@ const props = defineProps(['currentPlan', 'refer', 'price', 'percent'])
             </h3>
           </div>
         </div>
+      <div class="level-information__actions mb-4">
+      
 
         <div v-wave class="level-information__actions__item">
           <div class="level-information__actions__item-icon">

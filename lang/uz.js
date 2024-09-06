@@ -63,7 +63,7 @@ export default {
                 yourlevel: 'Sizning darajangiz',
                 balance: 'Balans',
                 invitation: 'Taklifnomalar',
-                percent: 'ПроFoizlarценты'
+                percent: 'Foizlar'
 
 
             },
@@ -124,7 +124,7 @@ export default {
         withdraw: 'Chiqarish',
         invitation: {
             title: 'Taklifnomalar',
-            button: 'Invite nHozir taklif qilingow',
+            button: 'Hozir taklif qilin',
             info: "Taklif Muvaffaqiyatli bo'lgandan so'ng, darhol mukofotni oling",
             successfull: 'Muvaffaqiyatli taklif',
             people: 'Odamlar'

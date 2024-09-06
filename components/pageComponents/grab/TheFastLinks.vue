@@ -41,7 +41,7 @@
         </div>
 
       </nuxt-link>
-      <nuxt-link v-wave :to="localeLocation('profile/faq')" class="links-item">
+      <nuxt-link v-wave :to="localeLocation('/profile/faq')" class="links-item">
         <div class="links-item-icon">
           <PhosphorIconQuestion :size="48" weight="duotone" color="#fff"/>
         </div>

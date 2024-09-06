@@ -30,7 +30,7 @@ const props = defineProps(['plans', 'currentPlan'])
           </h2>
         </div>
         <div class="level__body-icon">
-          <PhosphorIconSketchLogo :size="94" weight="duotone" color="#ffd14a"/>
+          <PhosphorIconSketchLogo :size="56" weight="duotone" color="#ffd14a"/>
         </div>
       </div>
 
@@ -63,7 +63,7 @@ const props = defineProps(['plans', 'currentPlan'])
 }
 
 .level__body .level__body-title h2 {
-  @apply text-6xl font-secondary font-black
+  @apply text-4xl font-secondary font-black
 }
 
 .level__actions {
