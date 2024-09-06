@@ -1,25 +1,28 @@
 <script setup lang="ts">
-const props = defineProps(['title'])
+const props = defineProps(['title', 'link'])
 </script>
 
 <template>
-    <header>
-        <nav class="navigation">
-            <div class="navigation__icon">
-                <button @click="$router.back()">
-                    <PhosphorIconCaretLeft :size="24" color="#fff"/>
-                </button>
-            </div>
-            <div class="navigation__title">
-                <h1>
-                    {{ props.title }}
-                </h1>
-            </div>
-            <div class="navigation__offsett">
+  <header>
+    <nav class="navigation">
+      <div class="navigation__icon">
+        <button @click="$router.back()" v-if="!props.link">
+          <PhosphorIconCaretLeft :size="24" color="#fff"/>
+        </button>
+        <nuxt-link :to="localeLocation(`${props.link}`)" v-if="props.link">
+          <PhosphorIconCaretLeft :size="24" color="#fff"/>
+        </nuxt-link>
+      </div>
+      <div class="navigation__title">
+        <h1>
+          {{ props.title }}
+        </h1>
+      </div>
+      <div class="navigation__offsett">
 
-            </div>
-        </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 </template>
 
 <style scoped lang="scss">

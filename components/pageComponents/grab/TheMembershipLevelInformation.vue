@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps(['currentPlan', 'refer', 'price','percent'])
+const props = defineProps(['currentPlan', 'refer', 'price', 'percent'])
 </script>
 
 <template>
@@ -69,17 +69,9 @@ const props = defineProps(['currentPlan', 'refer', 'price','percent'])
           </div>
 
           <div class="level-information__actions__item-value">
-            <h3>
-              {{ props.currentPlan.percent }}
-            </h3>
-            <h3>
-              /
-            </h3>
-            <h3 v-if="props.refer">
-              {{ props.percent }}
-            </h3>
-            <h3 v-if="!props.refer">
-              {{ props.currentPlan.percent }}
+
+            <h3 v-if="props.percent">
+              {{ props.percent }} %
             </h3>
           </div>
         </div>

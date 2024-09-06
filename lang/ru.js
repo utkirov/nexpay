@@ -1,4 +1,4 @@
-export default {
+﻿export default {
     login: {
         title: 'Авторизоваться',
         input: {
@@ -67,7 +67,7 @@ export default {
 
 
             },
-            button: 'Grabbing',
+            button: 'Старт',
         },
         toasts: {
             noBalance: 'Недостаточный баланс',
@@ -89,7 +89,7 @@ export default {
             upgradePlan: 'План модернизации'
         },
         toasts: {
-            notFound: 'не найдено',
+            notFound: 'Не найдено',
             clicked: 'Сегодня вы уже нажали',
             income: 'Вы получили доход',
             noBalance: 'Недостаточный баланс',
@@ -117,6 +117,69 @@ export default {
         help: 'Справочный центр',
         terms: 'Условия и положения',
         logout: 'Выйти',
+    },
+    teams: {
+        title: 'Команда',
+        recharge: 'Пополнить',
+        withdraw: 'Вывести',
+        invitation: {
+            title: 'Приглашение',
+            button: 'Приглашайте сейчас',
+            info: 'После успешного приглашения сразу же получите награду.',
+            successfull: 'Успешное приглашение',
+            people: 'Люди'
+
+        },
+        balance: {
+            title: 'Баланс',
+            total: 'Общий заработок от рефералов',
+            passed: 'Прошедшие дни',
+            referrals: 'Общее количество рефералов'
+        },
+        steps: {
+            title: 'Шаги партнёрства',
+            first: 'Отправить приглашение',
+            second: 'Регистрация друга и пополнение счета',
+            third: 'USDT и рейтинговые награды'
+        }
+    },
+
+    recharge: {
+        title: 'Пополнить',
+        instructions: 'Инструкция по пополнению счета',
+        transactions: 'Транзакции'
+    },
+    withdraw: {
+        title: 'Вывод',
+        channel: 'Метод вывода',
+        address: 'Укажите Ваш адрес',
+        amount: 'Сумма, которую можно снять',
+        inputAmount: 'Пожалуйста, введите сумму вывода',
+        paymentAddress: 'Платежный адрес',
+        addressWith: 'Пожалуйста, введите адрес вывода',
+        confirm: 'Подтвердить вывод',
+        transactions: 'Транзакции',
+        instructions: 'Инструкции по выводу средств',
+    },
+    transactions: {
+        title: 'Транзакции'
+    },
+    navigation: {
+        home: 'Дом',
+        earning: 'Заработок',
+        teams: 'Команда',
+        menu: 'Меню',
+    },
+
+    download: {
+        title: 'Скачать',
+        google: 'Скачать для устройств Android',
+        apple: 'Скачать для устройств Apple'
+    },
+    settings: {
+        title: 'Настройки',
+        google: 'Скачать для устройств Android',
+        apple: 'Скачать для устройств Apple'
     },
     misc: {
         copy: 'Скопировано в буфер обмена'

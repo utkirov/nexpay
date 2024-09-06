@@ -87,7 +87,7 @@ const copyFunc = function () {
           • The recharge address is USDT-TRC20, please check carefully before recharging
         </p>
         <p>
-          • The minimum deposit amount is 30USDT. Amounts below 30USDT will not be credited
+          • The minimum deposit amount is 50USDT. Amounts below 50USDT will not be credited
         </p>
         <p>
           • After the recharge is successful, it will be automatically credited within 3-5 minutes

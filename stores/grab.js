@@ -25,11 +25,9 @@ export const useGrabbing = defineStore("grab", {
                 const responseData = await response.json();
 
 
-                const randomValue =  Math.floor(Math.random() * responseData.data[0].length)
+                const randomValue = Math.floor(Math.random() * responseData.data[0].length)
 
-               this.videoId = responseData.data[0][randomValue]
-
-
+                this.videoId = responseData.data[0][randomValue]
 
 
             } catch (err) {
@@ -47,7 +45,8 @@ export const useGrabbing = defineStore("grab", {
                     },
                 });
                 const responseData = await response.json();
-                const videoSrc =  responseData.video
+                this.videoSrc = responseData.data.video
+
             } catch (err) {
                 console.error(err);
             }

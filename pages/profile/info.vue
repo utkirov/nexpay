@@ -27,9 +27,6 @@ useHead({
     <div class="personal-info__contaner">
 
       <div class="info">
-        <div class="user-avatar">
-          <img src="/user.png">
-        </div>
         <div class="info__item">
           <div class="info__item-title">
             <PhosphorIconUserCircle :size="24" color="#fff"/>

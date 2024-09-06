@@ -11,7 +11,7 @@ export default {
             register: 'Register an account',
             download: 'Download Application',
             contact: 'Contact customer service',
-            copyright: 'Copyright 2020 Takorp All rights Reserved'
+            copyright: 'Copyright 2017 NEXPAY All rights Reserved'
         }
     },
     signup: {
@@ -31,7 +31,7 @@ export default {
             register: 'Register an account',
             download: 'Download Application',
             contact: 'Contact customer service',
-            copyright: 'Copyright 2020 Takorp All rights Reserved'
+            copyright: 'Copyright 2017 NEXPAY All rights Reserved'
         }
     },
     main: {

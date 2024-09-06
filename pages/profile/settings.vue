@@ -1,9 +1,9 @@
 <template>
   <div class="settings">
-    <navigation-the-top-title :title="$t('settings.title')"/>
+    <navigation-the-top-title :title="$t('settings.title')" link="/profile"/>
 
     <div class="language">
-      <button v-wave @click="setLocale(item.code)" v-for="item in langs" :key="item.id" class="language__item">
+      <button v-wave @click="setLocalLang(item.code)" v-for="item in langs" :key="item.id" class="language__item">
         <div class="language__item-body">
           <img :src="item.src" :alt="item.name"/>
           <h2>
@@ -24,18 +24,24 @@
 </template>
 
 <script setup>
-const {locale, locales, setLocale } = useI18n()
-const switchLocalePath = useSwitchLocalePath()
+
+const {locale, setLocale} = useI18n()
 definePageMeta({
   layout: 'no-bottom-navigation-bar'
 })
 
+const setLocalLang = function (langCode) {
+  const lang = useCookie('lang');
+  setLocale(langCode)
+  lang.value = langCode
+}
+
 const langs = ref([
   {
     id: 1,
-    code: 'uz',
-    src: '/lang/uz.svg',
-    name: "O'zbekcha"
+    code: 'en',
+    src: '/lang/en.svg',
+    name: "English"
   },
   {
     id: 2,
@@ -45,16 +51,24 @@ const langs = ref([
   },
   {
     id: 3,
-    code: 'en',
-    src: '/lang/en.svg',
-    name: "English"
-  },
-  {
-    id: 4,
     code: 'tr',
     src: '/lang/tr.svg',
     name: "Turkey"
-  }
+  },
+  {
+    id: 4,
+    code: 'kz',
+    src: '/lang/kz.svg',
+    name: "Қазақча"
+  },
+  {
+    id: 5,
+    code: 'uz',
+    src: '/lang/uz.svg',
+    name: "O'zbekcha"
+  },
+
+
 ])
 </script>
 
@@ -74,9 +88,11 @@ const langs = ref([
 .language button img {
   @apply w-[36px]
 }
+
 .language__item {
   @apply justify-between
 }
+
 .language__item-body {
   @apply flex gap-4 items-center
 }

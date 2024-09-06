@@ -21,7 +21,7 @@
     </div>
     <div class="balance__container">
       <div class="balance__action">
-        <nuxt-link to="/team">
+        <nuxt-link :to="localeLocation('/team')">
           <PhosphorIconDotsThreeCircleVertical :size="32" color="#fff"/>
         </nuxt-link>
         <button @click="showValue = !showValue;">

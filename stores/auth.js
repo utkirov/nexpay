@@ -53,7 +53,6 @@ export const useUserAuth = defineStore("user", {
             }
         },
         saveToken(token) {
-            console.log(token)
             const tokens = useCookie('token');
             tokens.value = token
             this.navigate()

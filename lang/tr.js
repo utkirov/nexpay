@@ -118,6 +118,69 @@ export default {
         terms: 'Şartlar ve Koşullar',
         logout: 'Çıkmak',
     },
+    teams: {
+        title: 'Takımlar',
+        recharge: 'Şarj et',
+        withdraw: 'Çekilmek',
+        invitation: {
+            title: 'Davetiyeler',
+            button: 'Şimdi davet et',
+            info: 'Davet başarılı olduktan sonra ödülü hemen alın',
+            successfull: 'Başarılı davet',
+            people: 'insanlar'
+
+        },
+        balance: {
+            title: 'Denge',
+            total: 'Yönlendirmelerden toplam kazanç',
+            passed: 'Geçen günler',
+            referrals: 'Toplam yönlendirmeler'
+        },
+        steps: {
+            title: 'Üyelik Adımları',
+            first: 'Davetiye gönder',
+            second: 'Arkadaş kaydı ve yeniden şarj etme',
+            third: 'USDT ve derecelendirme ödülleri'
+        }
+    },
+
+    recharge: {
+        title: 'Şarj et',
+        instructions: 'Şarj talimatları',
+        transactions: 'İşlemler'
+    },
+    withdraw: {
+        title: 'Çekilmek',
+        channel: 'Para çekme kanalı',
+        address: 'Şarj adresi',
+        amount: 'Çekilebilecek tutar',
+        inputAmount: 'Lütfen para çekme tutarını girin',
+        paymentAddress: 'Ödeme adresi',
+        addressWith: 'Lütfen para çekme adresini girin',
+        confirm: 'Para çekme işlemini onayla',
+        transactions: 'İşlemler',
+        instructions: 'Para çekme talimatları',
+    },
+    transactions: {
+        title: 'İşlemler'
+    },
+    navigation: {
+        home: 'Ev',
+        earning: 'Kazanç',
+        teams: 'Takımlar',
+        menu: 'Menü',
+    },
+
+    download: {
+        title: 'İndirmek',
+        google: 'Android cihazlar için indirin',
+        apple: 'Apple cihazları için indirin'
+    },
+    settings: {
+        title: 'Ayarlar',
+        google: 'Android cihazlar için indirin',
+        apple: 'Apple cihazları için indirin'
+    },
     misc: {
         copy: 'Panoya kopyalandı'
     }

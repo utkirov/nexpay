@@ -237,7 +237,7 @@ const submit = async function () {
 
 
     <div class="login__actions">
-      <nuxt-link to="/login" class="login__actions__item">
+      <nuxt-link :to="localeLocation('/login')" class="login__actions__item">
         <div class="login__actions__item-icon">
           <PhosphorIconSignIn :size="48" color="#fff"/>
         </div>
@@ -248,7 +248,7 @@ const submit = async function () {
         </div>
       </nuxt-link>
 
-      <nuxt-link to="/download" class="login__actions__item">
+      <nuxt-link :to="localeLocation('/download')" class="login__actions__item">
         <div class="login__actions__item-icon">
           <PhosphorIconDownloadSimple :size="48" color="#fff"/>
         </div>

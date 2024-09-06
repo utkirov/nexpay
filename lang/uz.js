@@ -118,6 +118,69 @@ export default {
         terms: 'Shartlar va shartlar',
         logout: 'Chiqish',
     },
+    teams: {
+        title: 'Jamoalar',
+        recharge: 'Zaryadlash',
+        withdraw: 'Chiqarish',
+        invitation: {
+            title: 'Taklifnomalar',
+            button: 'Invite nHozir taklif qilingow',
+            info: "Taklif Muvaffaqiyatli bo'lgandan so'ng, darhol mukofotni oling",
+            successfull: 'Muvaffaqiyatli taklif',
+            people: 'Odamlar'
+
+        },
+        balance: {
+            title: 'Balans',
+            total: "Yo'llanmalardan umumiy daromad",
+            passed: "O'tgan kunlar",
+            referrals: 'Umumiy tavsiyalar'
+        },
+        steps: {
+            title: "A'zolik Qadamlari",
+            first: 'Taklif yuborish',
+            second: "Do'stlarni ro'yxatdan o'tkazish va to'ldirish",
+            third: 'USDT va reyting mukofotlari'
+        }
+    },
+
+    recharge: {
+        title: 'Zaryadlash',
+        instructions: "Zaryadlash bo'yicha ko'rsatmalar",
+        transactions: 'Bitimlar'
+    },
+    withdraw: {
+        title: 'Chiqarish',
+        channel: 'Chiqarish kanali',
+        address: 'Zaryadlash manzili',
+        amount: "Olinishi mumkin bo'lgan miqdor",
+        inputAmount: 'Iltimos, pul olish miqdorini kiriting',
+        paymentAddress: "To'lov manzili",
+        addressWith: 'Iltimos, pul olish manzilini kiriting',
+        confirm: 'Chiqarishni tasdiqlang',
+        transactions: 'Bitimlar',
+        instructions: "Qaytish ko'rsatmalar",
+    },
+    transactions: {
+        title: 'Bitimlar'
+    },
+    navigation: {
+        home: 'Uy',
+        earning: 'Daromad',
+        teams: 'Jamoalar',
+        menu: 'Menyu',
+    },
+
+    download: {
+        title: 'Yuklash',
+        google: 'Android qurilmalari uchun yuklab oling',
+        apple: 'Apple qurilmalari uchun yuklab oling'
+    },
+    settings: {
+        title: 'Sozlamalar',
+        google: 'Android qurilmalari uchun yuklab oling',
+        apple: 'Apple qurilmalari uchun yuklab oling'
+    },
     misc: {
         copy: 'Buferga kochirilgan'
     }

@@ -23,7 +23,7 @@ const share = function () {
       </p>
     </div>
 
-    <nuxt-link to="/team/referrals" class="success__invitation" v-wave>
+    <nuxt-link :to="localeLocation('/team/referrals')" class="success__invitation" v-wave>
       <div class="success__invitation-title">
         <PhosphorIconLink :size="24" color="#fff"/>
         {{ $t('teams.invitation.successfull') }}

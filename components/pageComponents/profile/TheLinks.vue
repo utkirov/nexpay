@@ -14,7 +14,7 @@ const logOut = function () {
 
   <div class="links">
     <div class="links-container">
-      <nuxt-link to="/team" class="link" v-wave>
+      <nuxt-link :to="localeLocation('/team')" class="link" v-wave>
         <div class="link__icon">
           <button>
             <PhosphorIconMailbox :size="24" color="rgba(255,255,255,0.65)"/>
@@ -34,7 +34,7 @@ const logOut = function () {
       </nuxt-link>
     </div>
     <div class="links-container">
-      <nuxt-link to="/profile/info" v-wave class="link">
+      <nuxt-link :to="localeLocation('/profile/info')" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconUserCircle :size="24" color="rgba(255,255,255,0.65)"/>
@@ -52,7 +52,7 @@ const logOut = function () {
           </button>
         </div>
       </nuxt-link>
-      <nuxt-link to="/recharge" v-wave class="link">
+      <nuxt-link :to="localeLocation('/recharge')" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconHandWithdraw :size="24" color="rgba(255,255,255,0.65)"/>
@@ -70,7 +70,7 @@ const logOut = function () {
           </button>
         </div>
       </nuxt-link>
-      <nuxt-link to="/withdraw" v-wave class="link">
+      <nuxt-link :to="localeLocation('/withdraw')" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconHandDeposit :size="24" color="rgba(255,255,255,0.65)"/>
@@ -109,7 +109,7 @@ const logOut = function () {
       </nuxt-link>
     </div>
     <div class="links-container">
-      <nuxt-link to="/profile/settings" v-wave class="link">
+      <nuxt-link :to="localeLocation('/profile/settings')" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconGearSix :size="24" color="rgba(255,255,255,0.65)"/>
@@ -127,25 +127,25 @@ const logOut = function () {
           </button>
         </div>
       </nuxt-link>
-<!--      <nuxt-link to="/profile/terms" v-wave class="link">-->
-<!--        <div class="link__icon">-->
-<!--          <button>-->
-<!--            <PhosphorIconBookOpenText :size="24" color="rgba(255,255,255,0.65)"/>-->
-<!--          </button>-->
-<!--        </div>-->
-<!--        <div class="link__title">-->
-<!--          <h2>-->
-<!--            {{ $t('profile.terms') }}-->
+      <!--      <nuxt-link :to="localeLocation('')"/profile/terms" v-wave class="link">-->
+      <!--        <div class="link__icon">-->
+      <!--          <button>-->
+      <!--            <PhosphorIconBookOpenText :size="24" color="rgba(255,255,255,0.65)"/>-->
+      <!--          </button>-->
+      <!--        </div>-->
+      <!--        <div class="link__title">-->
+      <!--          <h2>-->
+      <!--            {{ $t('profile.terms') }}-->
 
-<!--          </h2>-->
-<!--        </div>-->
-<!--        <div class="link__last-icon">-->
-<!--          <button>-->
-<!--            <PhosphorIconCaretRight :size="24" color="rgba(255,255,255,0.65)"/>-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </nuxt-link>-->
-      <nuxt-link to="/profile/faq" v-wave class="link">
+      <!--          </h2>-->
+      <!--        </div>-->
+      <!--        <div class="link__last-icon">-->
+      <!--          <button>-->
+      <!--            <PhosphorIconCaretRight :size="24" color="rgba(255,255,255,0.65)"/>-->
+      <!--          </button>-->
+      <!--        </div>-->
+      <!--      </nuxt-link>-->
+      <nuxt-link :to="localeLocation('/profile/faq')" v-wave class="link">
         <div class="link__icon">
           <button>
             <PhosphorIconLifebuoy :size="24" color="rgba(255,255,255,0.65)"/>

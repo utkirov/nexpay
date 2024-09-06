@@ -6,12 +6,12 @@
 
     />
     <div class="team__actions">
-      <nuxt-link v-wave to="/recharge">
+      <nuxt-link v-wave :to="localeLocation('/recharge')">
         <PhosphorIconHandWithdraw :size="32" color="rgba(255,255,255,0.65)"/>
         Recharge
       </nuxt-link>
 
-      <nuxt-link v-wave to="/withdraw">
+      <nuxt-link v-wave :to="localeLocation('/withdraw')">
         <PhosphorIconHandDeposit :size="32" color="rgba(255,255,255,0.65)"/>
         Withdraw
       </nuxt-link>
@@ -29,13 +29,13 @@
 <script setup>
 import {useTeam} from "~/stores/team.js";
 import {useProfile} from "~/stores/profile.js";
-import { useShare } from '@vueuse/core'
+import {useShare} from '@vueuse/core'
 
 definePageMeta({
   layout: 'no-top-navigation-bar'
 })
 
-const { share, isSupported } = useShare()
+const {share, isSupported} = useShare()
 
 function startShare() {
   share({

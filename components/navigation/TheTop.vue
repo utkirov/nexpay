@@ -15,7 +15,7 @@
       </div>
 
       <div class="navigation__avatar">
-        <nuxt-link to="/profile">
+        <nuxt-link :to="localeLocation('/profile')">
           <PhosphorIconUser :size="24" color="#fff"/>
         </nuxt-link>
       </div>

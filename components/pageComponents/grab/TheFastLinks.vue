@@ -8,7 +8,7 @@
   <section class="links">
     <utils-the-container-title :title="$t('main.links.title')"/>
     <div class="links__container inrow2">
-      <nuxt-link v-wave to="/withdraw" class="links-item">
+      <nuxt-link v-wave :to="localeLocation('/withdraw')" class="links-item">
         <div class="links-item-icon">
           <PhosphorIconHandDeposit :size="48" weight="duotone" color="#fff"/>
         </div>
@@ -19,7 +19,7 @@
         </div>
 
       </nuxt-link>
-      <nuxt-link v-wave to="/recharge" class="links-item">
+      <nuxt-link v-wave :to="localeLocation('/recharge')" class="links-item">
         <div class="links-item-icon">
           <PhosphorIconHandWithdraw :size="48" weight="duotone" color="#fff"/>
         </div>
@@ -30,7 +30,7 @@
         </div>
 
       </nuxt-link>
-      <nuxt-link v-wave to="/stacking" class="links-item">
+      <nuxt-link v-wave :to="localeLocation('/stacking')" class="links-item">
         <div class="links-item-icon">
           <PhosphorIconVault :size="48" weight="duotone" color="#fff"/>
         </div>
@@ -41,7 +41,7 @@
         </div>
 
       </nuxt-link>
-      <nuxt-link v-wave to="profile/faq" class="links-item">
+      <nuxt-link v-wave :to="localeLocation('profile/faq')" class="links-item">
         <div class="links-item-icon">
           <PhosphorIconQuestion :size="48" weight="duotone" color="#fff"/>
         </div>
@@ -52,7 +52,7 @@
         </div>
 
       </nuxt-link>
-      <nuxt-link v-wave to="/team" class="links-item">
+      <nuxt-link v-wave :to="localeLocation('/team')" class="links-item">
         <div class="links-item-icon">
           <PhosphorIconUsersThree :size="48" weight="duotone" color="#fff"/>
         </div>

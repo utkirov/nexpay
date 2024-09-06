@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const info = ref(false)
 const upgrade = ref(false)
-const props=defineProps(['plans', 'currentPlan'])
+const props = defineProps(['plans', 'currentPlan'])
 
 
 </script>
@@ -36,6 +36,7 @@ const props=defineProps(['plans', 'currentPlan'])
 
       <page-components-grab-the-membership-level-information
           :currentPlan="props.currentPlan"
+          :percent="props.currentPlan.percent"
       />
 
 

@@ -57,6 +57,10 @@ export default defineNuxtConfig({
                 code: 'tr',
                 file: 'tr.js'
             },
+            {
+                code: 'kz',
+                file: 'kz.js'
+            },
 
         ],
         lazy: true,

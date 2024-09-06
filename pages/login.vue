@@ -165,7 +165,7 @@ useHead({
 
 
     <div class="login__actions">
-      <nuxt-link to="/signup" class="login__actions__item">
+      <nuxt-link :to="localeLocation('/signup')" class="login__actions__item">
         <div class="login__actions__item-icon">
           <PhosphorIconUserCirclePlus :size="48" color="#fff"/>
         </div>
@@ -176,7 +176,7 @@ useHead({
         </div>
       </nuxt-link>
 
-      <nuxt-link to="/download" class="login__actions__item">
+      <nuxt-link :to="localeLocation('/download')" class="login__actions__item">
         <div class="login__actions__item-icon">
           <PhosphorIconDownloadSimple :size="48" color="#fff"/>
         </div>
