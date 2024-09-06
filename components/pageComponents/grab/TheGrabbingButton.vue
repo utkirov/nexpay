@@ -43,8 +43,8 @@ const earning = async function () {
       </template>
     </ScriptYouTubePlayer>
 
-    <button @click="visible=false">
-      close
+    <button v-wave @click="visible=false" class="p-4 bg-pure-white/5 flex w-full rounded-xl justify-center mt-4">
+      Close
     </button>
   </Dialog>
   <div class="grabbing">

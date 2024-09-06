@@ -65,7 +65,7 @@ useHead({
 
 <style scoped lang="scss">
 .team {
-  @apply my-[124px] px-[1rem]
+  @apply my-[124px]
 }
 
 .balance {
